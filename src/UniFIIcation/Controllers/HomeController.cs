@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace UniFIIcation.Controllers
 {
@@ -13,14 +9,14 @@ namespace UniFIIcation.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Orar()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Materii()
         {
             ViewData["Message"] = "Your contact page.";
 
