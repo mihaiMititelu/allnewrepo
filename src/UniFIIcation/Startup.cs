@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using UniFIIcation.Models;
 
 namespace UniFIIcation
 {
@@ -23,6 +24,7 @@ namespace UniFIIcation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<FIIContext>();
             // Add framework services.
             services.AddMvc();
         }
