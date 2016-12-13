@@ -11,19 +11,10 @@ namespace UniFIIcation.Controllers
 
         public IActionResult Orar()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
         public IActionResult Materii()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
         {
             return View();
         }

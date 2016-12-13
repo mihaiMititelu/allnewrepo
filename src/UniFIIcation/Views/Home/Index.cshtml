@@ -1,3 +1,62 @@
 ﻿@{
     ViewData["Title"] = "Pagina Principală";
 }
+
+<style>
+    div .box {
+        background-color: #18bc9c;
+    }
+
+    .flex-list {
+        position: relative;
+        margin: 1em;
+        overflow: hidden;
+    }
+    .flex-list ul {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .flex-list li {
+        flex-grow: 1;
+        flex-basis: auto;
+        margin: .25em 0;
+        padding: 0 1em;
+        text-align: center;
+        background-color: #DCE9BE;
+    }
+    
+        
+</style>
+
+
+
+<div class="box">
+        <div class="flex-list">
+            <h2>Anunțuri</h2>
+            <hr/>
+            <ul style="list-style: none;">
+                <li>
+                    <h4>
+                        Titlu
+                    </h4>
+                    <span>April 02, 2012</span>
+                    <span>Autor Articol</span>
+                    <p>
+                        Continut anunt 
+                    </p>
+                </li>
+                <li>
+                    <h4>
+                            Titlu 2
+                    </h4>
+                    <span>May 29, 2012</span>
+                    <span>Autor Articol</span>
+                    <p>
+                        Text articol.......
+                    </p>
+                </li>
+            </ul>
+        </div>
+</div>
