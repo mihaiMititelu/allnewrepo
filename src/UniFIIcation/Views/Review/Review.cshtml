@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Review";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+@model UniFIIcation.Models.UserReview
+
+@using (Html.BeginForm("Review", "Review", FormMethod.Post))
+{
+    <form>
+        <div class="col-md-3">
+            @Html.Label("Name: ")
+            @Html.TextBoxFor(n => n.Name, new { @class = "form-control" })
+            @Html.Label("Email: ")
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.Label("Comment: ")
+            @Html.TextAreaFor(model => model.Headline, new { @class = "form-control" })
+            <div>
+                @Html.Label("Rating: ")
+                @Html.RadioButton("rb1", "1", isChecked: true) @Html.Label("1")
+                @Html.RadioButton("rb2", "2", isChecked: false) @Html.Label("2")
+                @Html.RadioButton("rb3", "3", isChecked: false) @Html.Label("3")
+                @Html.RadioButton("rb4", "4", isChecked: false) @Html.Label("4")
+                @Html.RadioButton("rb5", "5", isChecked: false) @Html.Label("5")
+            </div>
+
+            <input class="btn btn-success" type="submit" id="submitId" value="Submit" />
+
+        </div>
+    </form>
+}
+

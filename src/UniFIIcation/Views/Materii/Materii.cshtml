@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Mat";
+}
+@model UniFIIcation.Models.MateriiModel
+@using (Html.BeginForm("Materii", "Materii", FormMethod.Post))
+{
+    <form>
+        <div>
+            <div style="float:left;width:45%;">
+                <p1>lista cu fisiere upload-ate</p1>
+
+                
+                <form method="post" asp-action="Materii" asp-controller="Materii" enctype="multipart/form-data">
+                    <input type="file" name="files" multiple />
+                    <input type="submit" value="Upload" />
+                </form>
+
+               
+
+
+
+
+            </div>
+
+            <div class="col-md-3 col-md-offset 4">
+                <p1>Aici vor fi postarile tuturor</p1>
+                <br/>
+                @Html.Label("Name: ")
+                @Html.TextBoxFor(n => n.Name, new {@class="form-control"})
+                @Html.Label("Email: ")
+                @Html.TextBoxFor(m => m.Email, new {@class="form-control"})
+                @Html.Label("Comment: ")
+                @Html.TextAreaFor(model => model.Headline, new { @class="form-control"}
+                    )
+
+                
+                <input type="submit" class="btn btn-success" id="submitId" value="Submit" />
+
+
+
+            </div>
+            <div style="clear:both; font-size:1px;"></div>
+        </div>
+    </form>
+}

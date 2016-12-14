@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/freelancer.css" />
 </head>
-<body style="background-color: #18bc9c">
+<body style="background-color: whitesmoke">
     <div class="navbar navbar-default navbar-custom">
         <div class="container">
             <div class="navbar-header">
@@ -19,7 +19,9 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Orar">Orar</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Materii">Materii</a></li>
+                    <li><a asp-area="" asp-controller="Materii" asp-action="Materii">Materii</a></li>
+                    <li><a asp-area="" asp-controller="Review" asp-action="Review">Review</a></li>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a asp-area="" asp-controller="Auth" asp-action="Login">Login</a></li>
