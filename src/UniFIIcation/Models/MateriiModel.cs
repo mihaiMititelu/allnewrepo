@@ -6,6 +6,7 @@ namespace UniFIIcation.Models
     {
         [DataType(DataType.MultilineText)]
         public string Headline { get; set; }
+
         public string Name { get; set; }
 
         public string Email { get; set; }

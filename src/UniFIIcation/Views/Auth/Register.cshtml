@@ -1,40 +1,66 @@
-﻿<div class="row">
+﻿@model UniFIIcation.ViewModels.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<div class="row">
     <div class="col-md-3">
-        <h3> Login </h3>
+        <h3> Register </h3>
         <form method="post" novalidate>
+            <div asp-validation-summary="ModelOnly"></div>
             <div class="form-group">
-                <label>Username</label>
-                <input class="form-control" />
-                <span class="text-muted"></span>
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-control"/>
+                <span asp-validation-for="Email" class="text-muted"></span>
             </div>
+
             <div class="form-group">
-                <label>Parola</label>
-                <input type="password" class="form-control" />
-                <span class="text-muted"></span>
+                <label asp-for="Password">Parola</label>
+                <input asp-for="Password" type="password" class="form-control"/>
+                <span asp-validation-for="Password" class="text-muted"></span>
             </div>
+
             <div class="form-group">
-                <label>Verifica Parola</label>
-                <input class="form-control" />
-                <span class="text-muted"></span>
+                <label asp-for="Password1">Verifica Parola</label>
+                <input asp-for="Password1" type="password" class="form-control"/>
+                <span asp-validation-for="Password1" class="text-muted"></span>
             </div>
+
             <div class="form-group">
-                <label>Nume</label>
-                <input class="form-control" />
-                <span class="text-muted"></span>
+                <label asp-for="Nume">Nume</label>
+                <input asp-for="Nume" class="form-control"/>
+                <span asp-validation-for="Nume" class="text-muted"></span>
             </div>
+
             <div class="form-group">
-                <label>Prenume</label>
-                <input class="form-control" />
-                <span class="text-muted"></span>
+                <label asp-for="Prenume">Prenume</label>
+                <input asp-for="Prenume" class="form-control"/>
+                <span asp-validation-for="Prenume" class="text-muted"></span>
             </div>
+
             <div class="form-group">
-                <label>An</label>
-                <input class="form-control" />
-                <span class="text-muted"></span>
+                <label asp-for="An">An</label>
+                <input asp-for="An" type="number" class="form-control"/>
+                <span asp-validation-for="An" class="text-muted"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-success" />
+                <label>Tip Cont</label><br/><br/>
+                Student:   @Html.RadioButton("TipCont", 1)<br/>
+                Profesor:   @Html.RadioButton("TipCont", 2)
+                <span asp-validation-for="TipCont"class="text-muted"></span>
             </div>
+
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-success"/>
+            </div>
+
         </form>
     </div>
 </div>

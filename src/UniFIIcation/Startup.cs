@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,6 +11,8 @@ namespace UniFIIcation
 {
     public class Startup
     {
+        private IHostingEnvironment _env;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -17,6 +21,7 @@ namespace UniFIIcation
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+            _env = env;
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -24,9 +29,21 @@ namespace UniFIIcation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<User, IdentityRole>(config =>
+            {
+                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+            }).AddEntityFrameworkStores<FIIContext>();
+
             services.AddDbContext<FIIContext>();
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                
+                if (_env.IsProduction())
+                {
+                    config.Filters.Add(new RequireHttpsAttribute());
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +63,8 @@ namespace UniFIIcation
             }
 
             app.UseStaticFiles();
+
+            app.UseIdentity();
 
             app.UseMvc(routes =>
             {

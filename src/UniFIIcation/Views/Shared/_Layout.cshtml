@@ -9,33 +9,45 @@
         <link rel="stylesheet" href="~/css/freelancer.css" />
 </head>
 <body style="background-color: whitesmoke">
-    <div class="navbar navbar-default navbar-custom">
-        <div class="container">
-            <div class="navbar-header">
-                <img src="/images/logo_fii3.png" alt="FII" width="45" height="45"/>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">UniFIIcation</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Orar">Orar</a></li>
-                    <li><a asp-area="" asp-controller="Materii" asp-action="Materii">Materii</a></li>
-                    <li><a asp-area="" asp-controller="Review" asp-action="Review">Review</a></li>
+<div class="navbar navbar-default navbar-custom">
+    <div class="container">
+        <div class="navbar-header">
+            <img src="/images/logo_fii3.png" alt="FII" width="45" height="45"/>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">UniFIIcation</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Orar">Orar</a></li>
+                <li><a asp-area="" asp-controller="Materii" asp-action="Materii">Materii</a></li>
+                <li><a asp-area="" asp-controller="Review" asp-action="Review">Review</a></li>
 
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a asp-area="" asp-controller="Auth" asp-action="Login">Login</a></li>
-                    <li><a asp-area="" asp-controller="Auth" asp-action="Register">Register</a></li>
-                </ul>
-            </div>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a></li>
+                }
+                else{
+                <li><a asp-area="" asp-controller="Auth" asp-action="Login">Login</a></li>
+                <li><a asp-area="" asp-controller="Auth" asp-action="Register">Register</a></li>
+                }
+                
+            </ul>
         </div>
     </div>
+</div>
 <div class="container body-content">
     @RenderBody()
     <hr />
        
 </div>
 
-    @RenderSection("scripts", required: false)
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js">
+</script>
+
+@RenderSection("scripts", required: false)
+    
 </body>
+
 </html>
