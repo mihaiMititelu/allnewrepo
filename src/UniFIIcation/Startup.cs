@@ -29,16 +29,14 @@ namespace UniFIIcation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<User, IdentityRole>(config =>
-            {
-                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
-            }).AddEntityFrameworkStores<FIIContext>();
+            services.AddIdentity<User, IdentityRole>(
+                    config => { config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login"; })
+                .AddEntityFrameworkStores<FIIContext>();
 
             services.AddDbContext<FIIContext>();
             // Add framework services.
             services.AddMvc(config =>
             {
-                
                 if (_env.IsProduction())
                 {
                     config.Filters.Add(new RequireHttpsAttribute());

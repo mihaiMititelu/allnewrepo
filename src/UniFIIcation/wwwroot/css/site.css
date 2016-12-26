@@ -1,13 +1,44 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.announce-inner-contents {
+    background-color: #B4D455;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.announce-text {
+    font-family: font-family: "Arial","Lucida","Trebuchet MS","Luxi Sans","Helvetica",sans-serif;
+    font-size: 14px;
+    word-wrap: break-word;
+    padding-left: 10px;
 }
 
+#news-item-box{
+    padding: 10px;
+}
+.announce-title {
+    font-size: 19px;
+    color: #333;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+    font-weight: bold;
+    display: block;
+}
 
+#ftr {
+    position: relative
+}
+
+.wrapper-box {
+    border: thin;
+    
+
+}
+
+.announce-author {
+    font-size: 12px;
+    font-family: Consolas; 
+    font-weight: 800
+}
+
+.announce-date {
+    font-family: Consolas;
+    font-size: 12px;
+    font-weight: 800
+}
