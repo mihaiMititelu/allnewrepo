@@ -10,6 +10,13 @@ namespace UniFIIcation.Models
                 
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            //builder.Entity<Announcement>().TODO
+        }
+
+        public DbSet<Announcement> Announcements { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

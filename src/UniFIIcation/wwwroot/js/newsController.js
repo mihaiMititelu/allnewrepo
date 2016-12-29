@@ -2,36 +2,48 @@
     "use strict";
 
     angular
-        .module("app-news")
+        .module("news")
         .controller("newsController", newsController);
 
     newsController.$inject = ["$scope"];
 
-    function newsController() {
+    function newsController($http) {
         /* jshint validthis:true */
+
         var vm = this;
         vm.author = "nimeni";
         vm.news = [
-            {
-                title: "Nu se fac ore de Crăciun",
-                text: "ladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladida",
-                author: vm.author,
-                created: new Date()
-            },
-            {
-                title: "Nu se fac ore de Crăciun",
-                text: "ladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladida",
-                author: vm.author,
-                created: new Date()
-            },
-            {
-                title: "Nu se fac ore de Crăciun",
-                text: "ladiladiladida",
-                author: vm.author,
-                created: new Date()
-            }
-        ];
-        
+        {
+            title: "nush",
+            author: vm.author,
+            created: new Date(),
+            text: "ldaldasdldlasdldlsdlasdas"
+        },
+        {
+            title: "nush",
+            author: vm.author,
+            created: new Date(),
+            text: "ldaldasdldlasdldlsdlasdas"
+        },
+        {
+            title: "nush",
+            author: vm.author,
+            created: new Date(),
+            text: "ldaldasdldlasdldlsdlasdas"
+        },
+        {
+            title: "nush",
+            author: vm.author,
+            created: new Date(),
+            text: "ldaldasdldlasdldlsdlasdas"
+        },
+        {
+            title: "nush",
+            author: vm.author,
+            created: new Date(),
+            text: "ldaldasdldlasdldlsdlasdas"
+        }];
+
         activate();
 
         function activate() { }

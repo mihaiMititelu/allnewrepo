@@ -4,72 +4,66 @@
 @model UniFIIcation.Models.Announcement
 @section Scripts{
     <script src="~/lib/angular/angular.min.js"></script>
-    <script src="~/js/app-news.js"></script>
+    <script src="~/js/news.js"></script>
     <script src="~/js/newsController.js"></script>
 }
+<div class="row" ng-app="news">
 
-<div class="announce-page row" ng-app="app-news">
-    
-    <div id="announce-title">
-        <h1>Anunțuri</h1>
-        <hr />
+    <div id="announcement-title">
+        <h1>
+            Anunțuri
+        </h1>
+        <hr/>
     </div>
-     
-    <div id="search-bar" class="col-md-11 col-md-offset-1 form-group">
-        
-        <form id="option-form" class="form-group">
-            
+
+    <div id="search-fields" class="col-md-10 col-md-offset-1">
+        <form id="option-form">
             <label for="searchBox"> Caută: </label>
-            <input class="form-group" id="searchBox" style="padding: 0"/>
-
+            <input id="searchBox" style="padding: 0"/>
             <label for="criteriaSelect">Sortează după: </label>
-
-            <select name="criteriaSelect" id="criteriaSelect" class="form-group">
-                <option value="1">Dată</option>
-                <option value="2">Autor</option>
-                <option value="3">Titlu</option>
+            <select name="criteriaSelect" id="criteriaSelect">
+                <option value="0">Dată</option>
+                <option value="1">Autor</option>
+                <option value="2">Titlu</option>
             </select>
-
-            <select name="sortingSelect" id="sortingSelect" class="form-group">
-                <option value="1">Ascendent</option>
-                <option value="2">Descendent</option>
+            <select name="sortingSelect" id="sortingSelect">
+                <option value="0">Ascendent</option>
+                <option value="1">Descendent</option>
             </select>
-            <button class="form-group btn btn-sm btn-success">Trimite</button>
-
+            <button type="submit" class="form-group btn btn-xs btn-primary">Trimite</button>
+            <a asp-controller="AddNews" asp-action="AddNews" style="float: right" class="btn btn-default btn-primary">Adaugă anunț</a>
         </form>
     </div>
+
 
     <div class="wrapper-box col-md-11 col-md-offset-1" id="wrapper">
 
         <div id="announce-entries" class="col-md-12" ng-controller="newsController as vm">
-        
-                <div class="announce-inner-contents" ng-repeat="entry in vm.news">
-                   
-                    <div id="news-item-box">
-                        
-                        <div id="title-wrapper">
-                            <span class="announce-title">{{ entry.title }}</span>
-                        </div>
 
-                        <div>
-                            <p class="announce-text">{{ entry.text }}</p>
-                        </div>
-
-
-                        <div>
-                            <span class="announce-author">{{entry.author}}</span>
-                        </div>
-
-                        <div>
-                            <span class="announce-date">{{ entry.created | date:"EEEE, dd.MM.yyyy" }}</span>
-                        </div>
-                        <hr/>
-                    </div>
-              
+            <div class="panel panel-info" ng-repeat="entry in vm.news">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="announce-title">{{ entry.title }}</span>
+                    </h3>
                 </div>
+                <div class="panel-body">
+                    <div>
+                        <p class="announce-text">{{ entry.text}}</p>
+                    </div>
+                    <div>
+                        <span class="announce-author">{{entry.author}}</span>
+                    </div>
+                    <div>
+                        <span class="announce-date">{{ entry.created | date:"EEEE, dd.MM.yyyy" }}</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 
-<hr />
-<div id="ftr"><h6>&copy; UniFIIcation</h6><h6>2016-2017</h6></div>
+<hr/>
+<div id="footer">
+    <h6>&copy; UniFIIcation</h6><h6>2016-2017</h6>
+</div>

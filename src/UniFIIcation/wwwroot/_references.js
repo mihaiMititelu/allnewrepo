@@ -1,5 +1,5 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="js/app-news.js" />
+/// <reference path="js/news.js" />
 /// <reference path="js/newscontroller.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/angular/angular.js" />
