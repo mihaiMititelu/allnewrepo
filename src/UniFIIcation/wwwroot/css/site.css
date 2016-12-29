@@ -1,17 +1,32 @@
-﻿.announce-inner-contents {
-    background-color: #B4D455;
-}
+﻿.announce-inner-contents { background-color: gainsboro; }
 
 .announce-text {
-    font-family: font-family: "Arial","Lucida","Trebuchet MS","Luxi Sans","Helvetica",sans-serif;
+    font-family: "Arial", "Lucida", "Trebuchet MS", "Luxi Sans", "Helvetica", sans-serif;
     font-size: 14px;
     word-wrap: break-word;
-    padding-left: 10px;
+    padding: 10px;
+    background-color: aliceblue
 }
 
-#news-item-box{
-    padding: 10px;
+#search-bar { padding: 27px; }
+
+#search-paragraph {
+    padding: 5px;
+    margin: 0
+
 }
+
+#option-form {
+    margin: 0px;
+
+}
+
+.announce-page {
+    
+}
+
+#news-item-box { padding: 10px; }
+
 .announce-title {
     font-size: 19px;
     color: #333;
@@ -19,26 +34,28 @@
     line-height: 1.25;
     font-weight: bold;
     display: block;
+    text-decoration: underline;
 }
 
-#ftr {
-    position: relative
+#title-wrapper {
+    background-color: aliceblue;
+    padding: 10px;    
 }
 
-.wrapper-box {
-    border: thin;
-    
+#ftr { position: relative }
 
-}
+.wrapper-box { border: thin; }
 
 .announce-author {
     font-size: 12px;
-    font-family: Consolas; 
-    font-weight: 800
+    font-family: Consolas;
+    font-weight: 800;
+    padding-left: 10px;
 }
 
 .announce-date {
     font-family: Consolas;
     font-size: 12px;
-    font-weight: 800
+    font-weight: 800;
+    padding-left: 10px;
 }

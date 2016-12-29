@@ -1,16 +1,16 @@
 ﻿(function () {
-    'use strict';
+    "use strict";
 
     angular
-        .module('app-news')
-        .controller('newsController', newsController);
+        .module("app-news")
+        .controller("newsController", newsController);
 
-    newsController.$inject = ['$scope'];
+    newsController.$inject = ["$scope"];
 
-    function newsController($location) {
+    function newsController() {
         /* jshint validthis:true */
         var vm = this;
-        vm.author = "neica nimeni lol";
+        vm.author = "nimeni";
         vm.news = [
             {
                 title: "Nu se fac ore de Crăciun",
@@ -20,7 +20,7 @@
             },
             {
                 title: "Nu se fac ore de Crăciun",
-                text: "ladiladiladida",
+                text: "ladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladidaladiladiladida",
                 author: vm.author,
                 created: new Date()
             },

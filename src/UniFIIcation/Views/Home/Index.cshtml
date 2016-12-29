@@ -14,15 +14,40 @@
         <h1>Anunțuri</h1>
         <hr />
     </div>
+     
+    <div id="search-bar" class="col-md-11 col-md-offset-1 form-group">
         
+        <form id="option-form" class="form-group">
+            
+            <label for="searchBox"> Caută: </label>
+            <input class="form-group" id="searchBox" style="padding: 0"/>
+
+            <label for="criteriaSelect">Sortează după: </label>
+
+            <select name="criteriaSelect" id="criteriaSelect" class="form-group">
+                <option value="1">Dată</option>
+                <option value="2">Autor</option>
+                <option value="3">Titlu</option>
+            </select>
+
+            <select name="sortingSelect" id="sortingSelect" class="form-group">
+                <option value="1">Ascendent</option>
+                <option value="2">Descendent</option>
+            </select>
+            <button class="form-group btn btn-sm btn-success">Trimite</button>
+
+        </form>
+    </div>
+
     <div class="wrapper-box col-md-11 col-md-offset-1" id="wrapper">
 
         <div id="announce-entries" class="col-md-12" ng-controller="newsController as vm">
         
                 <div class="announce-inner-contents" ng-repeat="entry in vm.news">
                    
-                     <div id="news-item-box">
-                        <div>
+                    <div id="news-item-box">
+                        
+                        <div id="title-wrapper">
                             <span class="announce-title">{{ entry.title }}</span>
                         </div>
 
@@ -47,4 +72,4 @@
 </div>
 
 <hr />
-<div class="footer" id="ftr"><h6>&copy; UniFIIcation</h6><h6>2016-2017</h6></div>
+<div id="ftr"><h6>&copy; UniFIIcation</h6><h6>2016-2017</h6></div>
