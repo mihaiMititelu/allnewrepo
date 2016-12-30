@@ -3,7 +3,7 @@
 
     angular
         .module("news")
-        .controller("newsController", newsController);
+        .controller("newsController", ["$http", newsController]);
 
     newsController.$inject = ["$scope"];
 
@@ -11,38 +11,15 @@
         /* jshint validthis:true */
 
         var vm = this;
-        vm.author = "nimeni";
-        vm.news = [
-        {
-            title: "nush",
-            author: vm.author,
-            created: new Date(),
-            text: "ldaldasdldlasdldlsdlasdas"
-        },
-        {
-            title: "nush",
-            author: vm.author,
-            created: new Date(),
-            text: "ldaldasdldlasdldlsdlasdas"
-        },
-        {
-            title: "nush",
-            author: vm.author,
-            created: new Date(),
-            text: "ldaldasdldlasdldlsdlasdas"
-        },
-        {
-            title: "nush",
-            author: vm.author,
-            created: new Date(),
-            text: "ldaldasdldlasdldlsdlasdas"
-        },
-        {
-            title: "nush",
-            author: vm.author,
-            created: new Date(),
-            text: "ldaldasdldlasdldlsdlasdas"
-        }];
+        vm.news = [];
+
+        $http.get("/api/get").then(function(response) {
+                angular.copy(response.data, vm.news);
+            },
+            function() {
+
+            });
+
 
         activate();
 

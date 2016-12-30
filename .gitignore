@@ -240,3 +240,10 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/src/UniFIIcation/Migrations/20161230095714_AnnouncementsFinal.Designer.cs
+/src/UniFIIcation/Migrations/20161230095546_Reviews.Designer.cs
+/src/UniFIIcation/Migrations/20161230095546_Reviews.cs
+/src/UniFIIcation/Migrations/20161230094747_AddNews.Designer.cs
+/src/UniFIIcation/Migrations/20161230094747_AddNews.cs
+/src/UniFIIcation/Migrations/20161230094127_materii.Designer.cs
+/src/UniFIIcation/Migrations/20161230094127_materii.cs

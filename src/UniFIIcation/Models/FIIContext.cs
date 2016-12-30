@@ -5,16 +5,6 @@ namespace UniFIIcation.Models
 {
     public class FIIContext : IdentityDbContext<User>
     {
-        public FIIContext()
-        {
-                
-        }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            //builder.Entity<Announcement>().TODO
-        }
-
         public DbSet<Announcement> Announcements { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

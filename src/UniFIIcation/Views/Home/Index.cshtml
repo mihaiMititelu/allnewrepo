@@ -48,13 +48,13 @@
                 </div>
                 <div class="panel-body">
                     <div>
-                        <p class="announce-text">{{ entry.text}}</p>
+                        <p class="announce-text">{{ entry.textContent}}</p>
                     </div>
                     <div>
                         <span class="announce-author">{{entry.author}}</span>
                     </div>
                     <div>
-                        <span class="announce-date">{{ entry.created | date:"EEEE, dd.MM.yyyy" }}</span>
+                        <span class="announce-date">{{ entry.publishDate | date:"EEEE, dd.MM.yyyy" }}</span>
                     </div>
                 </div>
             </div>

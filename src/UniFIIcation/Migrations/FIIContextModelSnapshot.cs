@@ -122,6 +122,29 @@ namespace UniFIIcation.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("UniFIIcation.Models.Announcement", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Author")
+                        .IsRequired();
+
+                    b.Property<DateTime>("PublishDate");
+
+                    b.Property<string>("TextContent")
+                        .IsRequired()
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Announcements");
+                });
+
             modelBuilder.Entity("UniFIIcation.Models.User", b =>
                 {
                     b.Property<string>("Id")

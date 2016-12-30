@@ -29,6 +29,8 @@ namespace UniFIIcation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddTransient<AnnouncementSeedData>();
             services.AddIdentity<User, IdentityRole>(
                     config => { config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login"; })
                 .AddEntityFrameworkStores<FIIContext>();
@@ -45,7 +47,7 @@ namespace UniFIIcation
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, AnnouncementSeedData seed)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -70,6 +72,9 @@ namespace UniFIIcation
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            seed.EnsureSeedData().Wait();
         }
     }
 }
