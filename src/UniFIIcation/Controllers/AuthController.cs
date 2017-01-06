@@ -29,11 +29,11 @@ namespace UniFIIcation.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Login(ViewModels.LoginViewModel vm, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel vm, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                var userName = vm.Email.Substring(0, vm.Email.IndexOf('@')).Replace(".", string.Empty);
+                var userName = vm.Username.Replace(".", "");
                 var signInResult = await SignInManager.PasswordSignInAsync(userName, vm.Password, true, false);
 
                 if (signInResult.Succeeded)
@@ -64,7 +64,7 @@ namespace UniFIIcation.Controllers
                 var user = new User()
                 {
                     Email = vm.Email,
-                    UserName = vm.Email.Substring(0, vm.Email.IndexOf('@')).Replace(".", string.Empty),
+                    UserName = vm.Email.Substring(0, vm.Email.IndexOf('@')),
                     Nume = vm.Nume,
                     Prenume = vm.Prenume,
                     Password = vm.Password,
@@ -82,7 +82,11 @@ namespace UniFIIcation.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Completati campurile corect");
+                    foreach (var identityError in result.Errors)
+                    {
+                        ModelState.AddModelError("", identityError.Description);
+                    }
+
                 }
             }
             return View();
