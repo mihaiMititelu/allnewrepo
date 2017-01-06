@@ -1,62 +1,69 @@
 ﻿@{
     ViewData["Title"] = "Pagina Principală";
 }
+@model UniFIIcation.Models.Announcement
+@section Scripts{
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/js/news.js"></script>
+    <script src="~/js/newsController.js"></script>
+}
+<div class="row" ng-app="news">
 
-<style>
-    div .box {
-        background-color: #BAC5CA;
-    }
+    <div id="announcement-title">
+        <h1>
+            Anunțuri
+        </h1>
+        <hr/>
+    </div>
 
-    .flex-list {
-        position: relative;
-        margin: 1em;
-        overflow: hidden;
-    }
-    .flex-list ul {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    .flex-list li {
-        flex-grow: 1;
-        flex-basis: auto;
-        margin: .25em 0;
-        padding: 0 1em;
-        text-align: center;
-        background-color: #D2E8EA;
-    }
-    
-        
-</style>
+    <div id="search-fields" class="col-md-10 col-md-offset-1">
+        <form id="option-form">
+            <label for="searchBox"> Caută: </label>
+            <input id="searchBox" style="padding: 0"/>
+            <label for="criteriaSelect">Sortează după: </label>
+            <select name="criteriaSelect" id="criteriaSelect">
+                <option value="0">Dată</option>
+                <option value="1">Autor</option>
+                <option value="2">Titlu</option>
+            </select>
+            <select name="sortingSelect" id="sortingSelect">
+                <option value="0">Ascendent</option>
+                <option value="1">Descendent</option>
+            </select>
+            <button type="submit" class="form-group btn btn-xs btn-primary">Trimite</button>
+            <a asp-controller="AddNews" asp-action="AddNews" style="float: right" class="btn btn-default btn-primary">Adaugă anunț</a>
+        </form>
+    </div>
 
 
+    <div class="wrapper-box col-md-11 col-md-offset-1" id="wrapper">
 
-<div class="box">
-        <div class="flex-list">
-            <h2>Anunțuri</h2>
-            <hr/>
-            <ul style="list-style: none;">
-                <li>
-                    <h4>
-                        Titlu
-                    </h4>
-                    <span>April 02, 2012</span>
-                    <span>Autor Articol</span>
-                    <p>
-                        Continut anunt 
-                    </p>
-                </li>
-                <li>
-                    <h4>
-                            Titlu 2
-                    </h4>
-                    <span>May 29, 2012</span>
-                    <span>Autor Articol</span>
-                    <p>
-                        Text articol.......
-                    </p>
-                </li>
-            </ul>
+        <div id="announce-entries" class="col-md-12" ng-controller="newsController as vm">
+
+            <div class="panel panel-info" ng-repeat="entry in vm.news">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="announce-title">{{ entry.title }}</span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <p class="announce-text">{{ entry.textContent}}</p>
+                    </div>
+                    <div>
+                        <span class="announce-author">{{entry.author}}</span>
+                    </div>
+                    <div>
+                        <span class="announce-date">{{ entry.publishDate | date:"EEEE, dd.MM.yyyy" }}</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
+    </div>
+</div>
+
+<hr/>
+<div id="footer">
+    <h6>&copy; UniFIIcation</h6><h6>2016-2017</h6>
 </div>

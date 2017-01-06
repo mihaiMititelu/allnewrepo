@@ -29,20 +29,16 @@ namespace UniFIIcation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<User, IdentityRole>(config =>
-            {
-                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
-                config.Password.RequireUppercase = false;
-                config.Password.RequireNonAlphanumeric = false;
-                config.Password.RequireDigit = false;
-                config.User.AllowedUserNameCharacters = "_-.";
-            }).AddEntityFrameworkStores<FIIContext>();
+
+            services.AddTransient<AnnouncementSeedData>();
+            services.AddIdentity<User, IdentityRole>(
+                    config => { config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login"; })
+                .AddEntityFrameworkStores<FIIContext>();
 
             services.AddDbContext<FIIContext>();
             // Add framework services.
             services.AddMvc(config =>
             {
-                
                 if (_env.IsProduction())
                 {
                     config.Filters.Add(new RequireHttpsAttribute());
@@ -51,7 +47,7 @@ namespace UniFIIcation
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, AnnouncementSeedData seed)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -76,6 +72,9 @@ namespace UniFIIcation
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            seed.EnsureSeedData().Wait();
         }
     }
 }

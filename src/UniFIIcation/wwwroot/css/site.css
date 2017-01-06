@@ -1,13 +1,80 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.announce-inner-contents {
+     background-color: gainsboro;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.announce-text {
+    font-family: "Arial", "Lucida", "Trebuchet MS", "Luxi Sans", "Helvetica", sans-serif;
+    font-size: 14px;
+    word-wrap: break-word;
+    padding: 10px;
+    background-color: aliceblue;
+    border-radius: 5px;
+    
+}
+
+#search-fields { 
+    padding-bottom: 25px;
+    padding-left: 27px;
+    padding-right: 0
+}
+
+#search-paragraph {
+    padding: 5px;
+    margin: 0
+
+}
+
+#option-form {
+    margin: 0px;
+    padding-left: 25px; 
 }
 
 
+#news-item-box {
+     padding: 10px;
+}
+
+.announce-title {
+    font-size: 19px;
+    color: #333;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+    font-weight: bold;
+    display: block;
+    text-decoration: underline;
+}
+
+#title-wrapper {
+    background-color: aliceblue;
+    padding: 10px;    
+}
+
+#footer {
+  
+}
+
+.wrapper-box {
+     border: thin;
+}
+.panel-info {
+     box-shadow: 10px 10px 5px #888888;
+    
+}
+.announce-author {
+    font-size: 12px;
+    font-family: Consolas;
+    font-weight: 800;
+    padding-left: 10px;
+}
+
+.announce-date {
+    font-family: Consolas;
+    font-size: 12px;
+    font-weight: 800;
+    padding-left: 10px;
+}
+
+
+.panel-body {
+    background-color: #b0c4de;
+}

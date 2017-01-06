@@ -5,10 +5,7 @@ namespace UniFIIcation.Models
 {
     public class FIIContext : IdentityDbContext<User>
     {
-        public FIIContext()
-        {
-                
-        }
+        public DbSet<Announcement> Announcements { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
