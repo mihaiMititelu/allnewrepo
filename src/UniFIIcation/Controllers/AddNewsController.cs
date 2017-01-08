@@ -6,7 +6,7 @@ namespace UniFIIcation.Controllers
 {
     public class AddNewsController : Controller
     {
-        private FIIContext _context;
+        private readonly FIIContext _context;
 
         public AddNewsController(FIIContext context)
         {
@@ -26,7 +26,7 @@ namespace UniFIIcation.Controllers
 
             _context.Announcements.Add(announcement);
             _context.SaveChanges();
-
+            ModelState.Clear();
             return View();
         }
     }

@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Adaugă anunț";
 }
+@section Scripts{
+    <script src="~/lib/angular/angular.min.js"></script>
+}
 @model UniFIIcation.Models.Announcement
 @using (Html.BeginForm("AddNews", "AddNews", FormMethod.Post))
 {
