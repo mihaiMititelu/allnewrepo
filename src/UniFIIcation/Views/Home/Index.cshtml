@@ -17,9 +17,10 @@
     </div>
 
     <div id="search-fields" class="col-md-10 col-md-offset-1">
+
         <form id="option-form">
             <label for="searchBox"> Caută: </label>
-            <input id="searchBox" style="padding: 0"/>
+            <input type="text" placeholder="Introduceti textul aici..." id="searchBox" style="padding: 0"/>
             <label for="criteriaSelect">Sortează după: </label>
             <select name="criteriaSelect" id="criteriaSelect">
                 <option value="0">Dată</option>
@@ -39,8 +40,8 @@
     <div class="wrapper-box col-md-11 col-md-offset-1" id="wrapper">
 
         <div id="announce-entries" class="col-md-12" ng-controller="newsController as vm">
-
-            <div class="panel panel-info" ng-repeat="entry in vm.news">
+            <div ng-show="vm.isBusy" class="text-center">Loading...</div>
+            <div class="panel panel-info" ng-repeat="entry in vm.news | orderBy: '-publishDate'">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <span class="announce-title">{{ entry.title }}</span>
@@ -62,7 +63,7 @@
         </div>
     </div>
 </div>
-
+<a href="#" class="back-to-top btn btn-default">Back to Top</a>
 <hr/>
 <div id="footer">
     <h6>&copy; UniFIIcation</h6><h6>2016-2017</h6>

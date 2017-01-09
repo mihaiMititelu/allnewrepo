@@ -63,11 +63,11 @@ namespace UniFIIcation.Controllers
             {
                 var user = new User()
                 {
-                    Email = vm.Email,
-                    UserName = vm.Email.Substring(0, vm.Email.IndexOf('@')),
-                    Nume = vm.Nume,
-                    Prenume = vm.Prenume,
-                    Password = vm.Password,
+                    Email = vm.Email.Trim(),
+                    UserName = vm.Email.Substring(0, vm.Email.IndexOf('@')).Trim(),
+                    Nume = vm.Nume.Trim(),
+                    Prenume = vm.Prenume.Trim(),
+                    Password = vm.Password.Trim(),
                     An = vm.An,
                     TipCont = vm.TipCont
                 };
@@ -80,13 +80,9 @@ namespace UniFIIcation.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                else
+                foreach (var identityError in result.Errors)
                 {
-                    foreach (var identityError in result.Errors)
-                    {
-                        ModelState.AddModelError("", identityError.Description);
-                    }
-
+                    ModelState.AddModelError("", identityError.Description);
                 }
             }
             return View();

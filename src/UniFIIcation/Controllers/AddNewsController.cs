@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UniFIIcation.Models;
 
@@ -8,20 +9,23 @@ namespace UniFIIcation.Controllers
     {
         private readonly FIIContext _context;
 
+
         public AddNewsController(FIIContext context)
         {
             _context = context;
         }
 
+        [Authorize]
         public IActionResult AddNews()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult AddNews(Announcement announcement)
         {
-            announcement.Author = "eu";
+            announcement.Author = User.Identity.Name;
             announcement.PublishDate = DateTime.Now;
 
             _context.Announcements.Add(announcement);

@@ -12,6 +12,21 @@
     
 }
 
+a.back-to-top {
+	display: none;
+	width: 60px;
+	height: 60px;
+	text-indent: -9999px;
+	position: fixed;
+	z-index: 999;
+	right: 20px;
+	bottom: 20px;
+	background: #b0c4de url("up-arrow.png") no-repeat center 43%;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+
 #search-fields { 
     padding-bottom: 25px;
     padding-left: 27px;
@@ -42,6 +57,8 @@
     font-weight: bold;
     display: block;
     text-decoration: underline;
+    word-wrap: break-word;
+
 }
 
 #title-wrapper {
