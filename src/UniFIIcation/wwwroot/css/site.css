@@ -5,8 +5,8 @@
     font-size: 14px;
     word-wrap: break-word;
     padding: 10px;
-    background-color: aliceblue;
-    border-radius: 5px;    
+    background-color: #f5f5dc;
+    border-radius: 5px
 }
 
 a.back-to-top {
@@ -82,13 +82,13 @@ a.back-to-top {
 }
 
 #title-wrapper {
-    background-color: aliceblue;
+    background-color: #f5f5dc;
     padding: 10px;
 }
 
 #footer { }
 
-.wrapper-box { border: thin; }
+.wrapper-box { border: thick; }
 
 .panel-info { box-shadow: 10px 10px 5px #888888; }
 

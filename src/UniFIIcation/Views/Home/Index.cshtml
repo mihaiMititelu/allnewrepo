@@ -25,7 +25,8 @@
             <input type="text" my-key-on-down-call="callRestService()"
                    placeholder="Introduceți textul aici..." id="searchBox" style="padding: 0"/>
 
-            <a asp-controller="AddNews" asp-action="AddNews" style="float: right" class="btn btn-default btn-primary">Adaugă anunț</a>
+            <a asp-controller="AddNews" asp-action="AddNews"
+                style="float: right" class="btn btn-default btn-primary">Adaugă anunț</a>
         </form>
     </div>
 
@@ -37,22 +38,30 @@
             <div class="panel panel-info" ng-repeat="entry in vm.news | orderBy: '-publishDate'">
                 <div class="panel-heading">
                     <h3 class="panel-title hvr-shadow">
-                        <span class="announce-title">{{ entry.title | limitTo: 100}}{{entry.title.length > 100 ? '...' : ''}}</span>
+                        <span class="announce-title">
+                            {{ entry.title | limitTo: 100}}{{entry.title.length > 100 ? '...' : ''}}
+                        </span>
                     </h3>
                 </div>
                 <div class="panel-body">
                     <div>
-                        <p class="announce-text hvr-glow">{{ entry.textContent|limitTo:100}}{{entry.textContent.length > 100 ? '...' : ''}}</p>
+                        <p class="announce-text hvr-glow col-md-12">
+                            {{ entry.textContent|limitTo:100}}{{entry.textContent.length > 100 ? '...' : ''}}
+                        </p>
                     </div>
                     <div>
-                        <span class="announce-author">{{entry.author}}</span>
+                        <span class="announce-author ">
+                            {{entry.author}}
+                        </span>
                     </div>
                     <div>
-                        <span class="announce-date">{{ entry.publishDate | date:"EEEE, dd.MM.yyyy" }}</span>
+                        <span class="announce-date">
+                            {{ entry.publishDate | date:"EEEE, dd.MM.yyyy" }}
+                        </span>
                     </div>
                     <button type="button" class="btn btn-info btn-default"
                             style="float: right; background-color: aliceblue; color: black"
-                            data-toggle="modal" data-target="#newsModal{{entry.id}}">
+                            data-toggle="modal" data-target="#newsModal{{entry.id}}" ng-if="entry.textContent.length > 100">
                         Vezi tot
                     </button>
 
