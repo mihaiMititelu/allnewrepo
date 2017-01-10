@@ -13,6 +13,14 @@
         var vm = this;
         vm.news = [];
         vm.isBusy = true;
+        vm.results = [];
+        vm.callRestService = function() {
+            $http({ method: "GET", url: "/api/get" })
+                .success(function (data, status, headers, config) {
+                    angular.copy(response.data, vm.news);
+                });
+        }
+
         $http.get("/api/get").then(function(response) {
                 angular.copy(response.data, vm.news);
             },
