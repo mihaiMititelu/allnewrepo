@@ -31,7 +31,7 @@ namespace UniFIIcation.Controllers
             _context.Announcements.Add(announcement);
             _context.SaveChanges();
             ModelState.Clear();
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

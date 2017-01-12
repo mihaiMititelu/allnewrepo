@@ -25,12 +25,12 @@
             <input type="text" my-key-on-down-call="callRestService()"
                    placeholder="Introduceți textul aici..." id="searchBox" style="padding: 0"/>
 
-            <a asp-controller="AddNews" asp-action="AddNews"
-                style="float: right" class="btn btn-default btn-primary">Adaugă anunț</a>
+            <a asp-controller="AddNews" asp-action="AddNews"               style="float: right" class="btn btn-default btn-primary">
+                Adaugă anunț
+            </a>
         </form>
     </div>
-
-
+    <!--TODO: infinite scroll/paginare-->
     <div class="wrapper-box col-md-11 col-md-offset-1" id="wrapper">
 
         <div id="announce-entries" class="col-md-12" ng-controller="newsController as vm">
@@ -56,7 +56,7 @@
                     </div>
                     <div>
                         <span class="announce-date">
-                            {{ entry.publishDate | date:"EEEE, dd.MM.yyyy" }}
+                            {{ entry.publishDate | date:"EEEE, dd.MM.yyyy, HH:mm" }}
                         </span>
                     </div>
                     <button type="button" class="btn btn-info btn-default"

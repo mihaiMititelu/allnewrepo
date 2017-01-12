@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h2><span class="label label-primary">Alege materiile pe care vrei sa le adaugi in orarul tau</span></h2>
+
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu" data-toggle="dropdown">Alege Orar</button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                @{
+                    var orar = ViewData["orar"] as List<string>;
+                    if (orar.Count != 1)
+                    {
+                        foreach (var item in orar)
+                        {
+                            string[] row = item.Split('|');
+                            string link = "/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/" + row[0];
+                            if (!row[1].Contains("eOra"))
+                            {
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href=@link>@row[1]</a></li>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">@orar[0]</a></li>
+
+                    }
+                }
+                <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/participanti/orar_I3B5.html">Anul1 SeriaA</a></li>-->
+
+                <li role="presentation" class="divider"></li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu" data-toggle="dropdown">Profesori</button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+                @{
+                    var profs = ViewData["profesori"] as List<String>;
+                    if (profs.Count != 1)
+                    {
+                        foreach (var item in profs)
+                        {
+                            string[] row = item.Split('|');
+                            string link = "/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/" + row[0];
+                            if (!row[1].Contains("eOra"))
+                            {
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href=@link>@row[1]</a></li>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">@profs[0]</a></li>
+
+                    }
+                }
+                <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/participanti/orar_I3B5.html">Anul1 SeriaA</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/">Anul1 SeriaB</a></li>-->
+                <li role="presentation" class="divider"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

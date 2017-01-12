@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using UniFIIcation.Models;
+using UniFIIcation.Services;
 
 namespace UniFIIcation
 {
@@ -38,6 +39,10 @@ namespace UniFIIcation
                 config.Password.RequireNonAlphanumeric = false;
                 config.Password.RequireDigit = false;
             }).AddEntityFrameworkStores<FIIContext>();
+
+            //orar
+            services.AddTransient<IMyParseWeb, ParseWeb>();
+            //---------
 
             services.AddDbContext<FIIContext>();
             // Add framework services.
@@ -78,7 +83,7 @@ namespace UniFIIcation
             });
 
 
-            seed.EnsureSeedData().Wait();
+            //seed.EnsureSeedData().Wait();
         }
     }
 }
