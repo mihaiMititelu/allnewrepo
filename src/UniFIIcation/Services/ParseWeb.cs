@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using HtmlAgilityPack;
-using UniFIIcation.Services;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System;
 
 namespace UniFIIcation.Services
 {
@@ -13,30 +14,65 @@ namespace UniFIIcation.Services
             string row = string.Empty;
 
             var Webget = new HtmlWeb();
-            var doc = Webget.LoadFromWebAsync(url).Result;
-            var URLS = doc.DocumentNode.Descendants("th")
-                   .Select(e => e.InnerText);
-            //.Where(s => !String.IsNullOrEmpty(s));
-            for(int i = 0; i < URLS.Count(); ++i)
+            try
             {
-                content.Add(URLS.ElementAt(i));
-            }
+                var doc = Webget.LoadFromWebAsync(url).Result;
+                var headers = doc.DocumentNode.Descendants("th")
+                       .Select(e => e.InnerText);
+                //.Where(s => !String.IsNullOrEmpty(s));
+                content = headers.ToList<string>();
 
-            /*foreach (HtmlNode node in doc.DocumentNode.XPath)
-            {
-                row += node.ChildNodes[0].InnerHtml + "|";
+                var data = doc.DocumentNode.Descendants("td")
+                       .Select(e => e.InnerText);
+
+                foreach (var item in data)
+                {
+                    string noHTML = Regex.Replace(item, @"&nbsp;", "--");
+                    content.Add(noHTML);
+                }
             }
-            content.Add(row);*/
-            /*row = string.Empty;
-            foreach (HtmlNode node in doc.DocumentNode.Ancestors("//td"))
+            catch (Exception ex)
             {
-                row += node.ChildNodes[0].InnerHtml + "|";
+                content.Add(this.ParseException(ex.ToString()));
             }
-            content.Add(row);
-            row = string.Empty;*/
-            //content.Add("Text");
 
             return content;
+        }
+
+        public List<string> ExtractOptions(string url)
+        {
+            List<string> content = new List<string>();
+            string row = string.Empty;
+
+            var Webget = new HtmlWeb();
+            try
+            {
+                var doc = Webget.LoadFromWebAsync(url).Result;
+                var options = doc.DocumentNode.Descendants("a")
+                       .Select(e => e);
+                //.Where(s => !String.IsNullOrEmpty(s));
+                foreach (var item in options)
+                {
+                    content.Add(item.Attributes["href"].Value + "|" + item.InnerText);
+                }
+                //content=options.ToList<string>();
+            }
+            catch (Exception ex)
+            {
+                content.Add(this.ParseException(ex.ToString()));
+            }
+            return content;
+        }
+        public string ParseException(string s)
+        {
+            int a = s.IndexOf('(');
+            int b = s.IndexOf(')');
+            string ret = "Error";
+            if (a >= 0 && b >= 0)
+            {
+                ret = s.Substring(a + 1, b - a - 1);
+            }
+            return ret;
         }
     }
 }

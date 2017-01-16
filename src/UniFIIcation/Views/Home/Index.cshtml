@@ -6,55 +6,81 @@
     <script src="~/lib/angular/angular.min.js"></script>
     <script src="~/js/news.js"></script>
     <script src="~/js/newsController.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 }
 <div class="row" ng-app="news">
 
     <div id="announcement-title">
-        <h1>
+        <h1 class="hvr-shadow">
             Anunțuri
         </h1>
         <hr/>
     </div>
 
     <div id="search-fields" class="col-md-10 col-md-offset-1">
-        <form id="option-form">
+
+        <form id="option-form" ng-controller="newsController">
+
             <label for="searchBox"> Caută: </label>
-            <input id="searchBox" style="padding: 0"/>
-            <label for="criteriaSelect">Sortează după: </label>
-            <select name="criteriaSelect" id="criteriaSelect">
-                <option value="0">Dată</option>
-                <option value="1">Autor</option>
-                <option value="2">Titlu</option>
-            </select>
-            <select name="sortingSelect" id="sortingSelect">
-                <option value="0">Ascendent</option>
-                <option value="1">Descendent</option>
-            </select>
-            <button type="submit" class="form-group btn btn-xs btn-primary">Trimite</button>
-            <a asp-controller="AddNews" asp-action="AddNews" style="float: right" class="btn btn-default btn-primary">Adaugă anunț</a>
+            <input type="text" my-key-on-down-call="callRestService()"
+                   placeholder="Introduceți textul aici..." id="searchBox" style="padding: 0"/>
+
+            <a asp-controller="AddNews" asp-action="AddNews"               style="float: right" class="btn btn-default btn-primary">
+                Adaugă anunț
+            </a>
         </form>
     </div>
-
-
+    <!--TODO: infinite scroll/paginare-->
     <div class="wrapper-box col-md-11 col-md-offset-1" id="wrapper">
 
         <div id="announce-entries" class="col-md-12" ng-controller="newsController as vm">
-
-            <div class="panel panel-info" ng-repeat="entry in vm.news">
+            <div ng-show="vm.isBusy" class="text-center">Loading...</div>
+            <div class="panel panel-info" ng-repeat="entry in vm.news | orderBy: '-publishDate'">
                 <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <span class="announce-title">{{ entry.title }}</span>
+                    <h3 class="panel-title hvr-shadow">
+                        <span class="announce-title">
+                            {{ entry.title | limitTo: 100}}{{entry.title.length > 100 ? '...' : ''}}
+                        </span>
                     </h3>
                 </div>
                 <div class="panel-body">
                     <div>
-                        <p class="announce-text">{{ entry.textContent}}</p>
+                        <p class="announce-text hvr-glow col-md-12">
+                            {{ entry.textContent|limitTo:100}}{{entry.textContent.length > 100 ? '...' : ''}}
+                        </p>
                     </div>
                     <div>
-                        <span class="announce-author">{{entry.author}}</span>
+                        <span class="announce-author ">
+                            {{entry.author}}
+                        </span>
                     </div>
                     <div>
-                        <span class="announce-date">{{ entry.publishDate | date:"EEEE, dd.MM.yyyy" }}</span>
+                        <span class="announce-date">
+                            {{ entry.publishDate | date:"EEEE, dd.MM.yyyy, HH:mm" }}
+                        </span>
+                    </div>
+                    <button type="button" class="btn btn-info btn-default"
+                            style="float: right; background-color: aliceblue; color: black"
+                            data-toggle="modal" data-target="#newsModal{{entry.id}}" ng-if="entry.textContent.length > 100">
+                        Vezi tot
+                    </button>
+
+                    <!-- Modal -->
+                    <div id="newsModal{{entry.id}}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="word-wrap: break-word">{{entry.title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="word-wrap: break-word">{{entry.textContent}}</p>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,7 +88,7 @@
         </div>
     </div>
 </div>
-
+<a href="#" class="back-to-top btn btn-default">Back to Top</a>
 <hr/>
 <div id="footer">
     <h6>&copy; UniFIIcation</h6><h6>2016-2017</h6>

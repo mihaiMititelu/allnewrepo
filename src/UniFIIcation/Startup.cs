@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using UniFIIcation.Models;
+using UniFIIcation.Services;
 
 namespace UniFIIcation
 {
@@ -39,8 +40,11 @@ namespace UniFIIcation
                 config.Password.RequireDigit = false;
             }).AddEntityFrameworkStores<FIIContext>();
 
-            services.AddDbContext<FIIContext>();
+            //orar
+            services.AddTransient<IMyParseWeb, ParseWeb>();
+            //---------
 
+            services.AddDbContext<FIIContext>();
             // Add framework services.
             services.AddMvc(config =>
             {
@@ -49,8 +53,6 @@ namespace UniFIIcation
                     config.Filters.Add(new RequireHttpsAttribute());
                 }
             });
-
-          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,7 +83,7 @@ namespace UniFIIcation
             });
 
 
-           seed.EnsureSeedData().Wait();
+            //seed.EnsureSeedData().Wait();
         }
     }
 }

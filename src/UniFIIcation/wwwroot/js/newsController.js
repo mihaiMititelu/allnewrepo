@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     "use strict";
 
     angular
@@ -12,17 +12,21 @@
 
         var vm = this;
         vm.news = [];
-
+        vm.isBusy = true;
+        vm.tooLong = false;
+       
         $http.get("/api/get").then(function(response) {
-                angular.copy(response.data, vm.news);
+            angular.copy(response.data, vm.news);
             },
             function() {
-
-            });
+                console.log("failure: " + status);
+            }).finally(function() {
+            vm.isBusy = false;
+        });
 
 
         activate();
 
-        function activate() { }
+        function activate() {}
     }
 })();

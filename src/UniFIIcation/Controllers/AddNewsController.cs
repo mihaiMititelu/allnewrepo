@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UniFIIcation.Models;
 
@@ -6,18 +7,21 @@ namespace UniFIIcation.Controllers
 {
     public class AddNewsController : Controller
     {
-        private FIIContext _context;
+        private readonly FIIContext _context;
+
 
         public AddNewsController(FIIContext context)
         {
             _context = context;
         }
 
+        [Authorize]
         public IActionResult AddNews()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult AddNews(Announcement announcement)
         {
@@ -26,8 +30,8 @@ namespace UniFIIcation.Controllers
 
             _context.Announcements.Add(announcement);
             _context.SaveChanges();
-
-            return View();
+            ModelState.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
