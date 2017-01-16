@@ -21,7 +21,7 @@ namespace UniFIIcation.Controllers
         [HttpPost]
         public IActionResult AddNews(Announcement announcement)
         {
-            announcement.Author = "eu";
+            announcement.Author = User.Identity.Name;
             announcement.PublishDate = DateTime.Now;
 
             _context.Announcements.Add(announcement);
