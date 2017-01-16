@@ -1,6 +1,6 @@
 ﻿//news.js
-(function () {
+(function() {
         "use strict";
-        angular.module("news", []);
+        angular.module("news", ["infinite-scroll"]);
     }
 )();

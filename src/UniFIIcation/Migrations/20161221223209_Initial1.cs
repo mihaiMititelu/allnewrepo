@@ -8,17 +8,17 @@ namespace UniFIIcation.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "UId",
-                table: "AspNetUsers");
+                "UId",
+                "AspNetUsers");
 
             migrationBuilder.RenameColumn(
-                name: "Parola",
-                table: "AspNetUsers",
-                newName: "Password");
+                "Parola",
+                "AspNetUsers",
+                "Password");
 
             migrationBuilder.AddColumn<int>(
-                name: "An",
-                table: "AspNetUsers",
+                "An",
+                "AspNetUsers",
                 nullable: false,
                 defaultValue: 0);
         }
@@ -26,17 +26,17 @@ namespace UniFIIcation.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "An",
-                table: "AspNetUsers");
+                "An",
+                "AspNetUsers");
 
             migrationBuilder.RenameColumn(
-                name: "Password",
-                table: "AspNetUsers",
-                newName: "Parola");
+                "Password",
+                "AspNetUsers",
+                "Parola");
 
             migrationBuilder.AddColumn<Guid>(
-                name: "UId",
-                table: "AspNetUsers",
+                "UId",
+                "AspNetUsers",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
         }

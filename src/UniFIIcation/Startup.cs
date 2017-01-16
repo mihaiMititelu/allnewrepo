@@ -12,14 +12,14 @@ namespace UniFIIcation
 {
     public class Startup
     {
-        private IHostingEnvironment _env;
+        private readonly IHostingEnvironment _env;
 
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
             _env = env;
@@ -30,7 +30,6 @@ namespace UniFIIcation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddTransient<AnnouncementSeedData>();
             services.AddIdentity<User, IdentityRole>(config =>
             {
@@ -50,16 +49,15 @@ namespace UniFIIcation
             services.AddMvc(config =>
             {
                 if (_env.IsProduction())
-                {
                     config.Filters.Add(new RequireHttpsAttribute());
-                }
             });
 
           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, AnnouncementSeedData seed)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            AnnouncementSeedData seed)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -81,12 +79,12 @@ namespace UniFIIcation
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
             });
 
 
-            seed.EnsureSeedData().Wait();
+            //seed.EnsureSeedData().Wait();
         }
     }
 }

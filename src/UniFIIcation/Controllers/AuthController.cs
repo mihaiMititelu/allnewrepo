@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using UniFIIcation.Models;
 using UniFIIcation.ViewModels;
@@ -8,22 +9,20 @@ namespace UniFIIcation.Controllers
 {
     public class AuthController : Controller
     {
-        private SignInManager<User> SignInManager { get; }
-        private UserManager<User> UserManager { get; }
-
         public AuthController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             SignInManager = signInManager;
             UserManager = userManager;
         }
 
+        private SignInManager<User> SignInManager { get; }
+        private UserManager<User> UserManager { get; }
+
         [HttpGet]
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
-            {
                 return RedirectToAction("Index", "Home");
-            }
 
             return View();
         }
@@ -37,20 +36,11 @@ namespace UniFIIcation.Controllers
                 var signInResult = await SignInManager.PasswordSignInAsync(userName, vm.Password, true, false);
 
                 if (signInResult.Succeeded)
-                {
                     if (string.IsNullOrWhiteSpace(returnUrl))
-                    {
                         return RedirectToAction("Index", "Home");
-                    }
                     else
-                    {
                         return Redirect(returnUrl);
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Email-ul sau parola greșite");
-                }
+                ModelState.AddModelError("", "Email-ul sau parola greșite");
             }
 
             return View();
@@ -61,7 +51,7 @@ namespace UniFIIcation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User()
+                var user = new User
                 {
                     Email = vm.Email.Trim(),
                     UserName = vm.Email.Substring(0, vm.Email.IndexOf('@')).Trim(),
@@ -73,7 +63,7 @@ namespace UniFIIcation.Controllers
                 };
 
                 var result = await UserManager.CreateAsync(user, vm.Password);
-
+                
                 if (result.Succeeded)
                 {
                     if (user.TipCont == 1)
@@ -85,9 +75,7 @@ namespace UniFIIcation.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 foreach (var identityError in result.Errors)
-                {
                     ModelState.AddModelError("", identityError.Description);
-                }
             }
             return View();
         }
@@ -96,9 +84,7 @@ namespace UniFIIcation.Controllers
         public IActionResult Register()
         {
             if (User.Identity.IsAuthenticated)
-            {
                 return RedirectToAction("Index", "Home");
-            }
 
             return View();
         }
@@ -109,9 +95,6 @@ namespace UniFIIcation.Controllers
                 await SignInManager.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
-            
         }
-
-        
     }
 }

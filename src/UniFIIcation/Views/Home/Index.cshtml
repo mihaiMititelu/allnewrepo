@@ -7,6 +7,7 @@
     <script src="~/js/news.js"></script>
     <script src="~/js/newsController.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/ng-infinite-scroll.js"></script>
 }
 <div class="row" ng-app="news">
 
@@ -16,24 +17,24 @@
         </h1>
         <hr/>
     </div>
+    
 
-    <div id="search-fields" class="col-md-10 col-md-offset-1">
+    @if (ViewContext.HttpContext.User.IsInRole("Professor"))
+    {
+        <div id="search-fields" class="col-md-10 col-md-offset-1">
+            <form id="option-form" ng-controller="newsController">
+                <a asp-controller="AddNews" asp-action="AddNews" style="float: right" class="btn btn-default btn-primary">
+                    Adaugă anunț
+                </a>
+            </form>
+        </div>
+    }
+    
 
-        <form id="option-form" ng-controller="newsController">
-
-            <label for="searchBox"> Caută: </label>
-            <input type="text" my-key-on-down-call="callRestService()"
-                   placeholder="Introduceți textul aici..." id="searchBox" style="padding: 0"/>
-
-            <a asp-controller="AddNews" asp-action="AddNews"               style="float: right" class="btn btn-default btn-primary">
-                Adaugă anunț
-            </a>
-        </form>
-    </div>
-    <!--TODO: infinite scroll/paginare-->
     <div class="wrapper-box col-md-11 col-md-offset-1" id="wrapper">
 
-        <div id="announce-entries" class="col-md-12" ng-controller="newsController as vm">
+        <div id="announce-entries" class="col-md-12" ng-controller="newsController as vm"
+             infinite-scroll="vm.myPagingFunction()" infinite-scroll-distance="3">
             <div ng-show="vm.isBusy" class="text-center">Loading...</div>
             <div class="panel panel-info" ng-repeat="entry in vm.news | orderBy: '-publishDate'">
                 <div class="panel-heading">
@@ -60,7 +61,7 @@
                         </span>
                     </div>
                     <button type="button" class="btn btn-info btn-default"
-                            style="float: right; background-color: aliceblue; color: black"
+                            style="background-color: aliceblue; color: black; float: right;"
                             data-toggle="modal" data-target="#newsModal{{entry.id}}" ng-if="entry.textContent.length > 100">
                         Vezi tot
                     </button>

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using UniFIIcation.Models;
 
 namespace UniFIIcation.Controllers
@@ -12,7 +12,7 @@ namespace UniFIIcation.Controllers
             var email = model.Email;
             var comment = model.Comment;
 
-            ReviewModels table = new ReviewModels();
+            var table = new ReviewModels();
             table.Name = name;
             table.Email = email;
             table.Comment = comment;

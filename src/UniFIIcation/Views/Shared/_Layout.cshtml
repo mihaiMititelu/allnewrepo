@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"]</title>
 
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/freelancer.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="~/css/freelancer.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
 </head>
 <body style="background-color: whitesmoke">
 <div class="navbar navbar-default navbar-custom">
@@ -18,56 +18,71 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Orar">Orar</a></li>
-                <li><a asp-area="" asp-controller="Materii" asp-action="Materii">Materii</a></li>
-                <li><a asp-area="" asp-controller="Review" asp-action="Review">Review</a></li>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="WebParser" asp-action="Welcome">Orar</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Materii" asp-action="Materii">Materii</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Review" asp-action="Review">Review</a>
+                </li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li><a asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a></li>
+                    <li>
+                        <a asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a>
+                    </li>
                 }
-                else{
-                <li><a asp-area="" asp-controller="Auth" asp-action="Login">Login</a></li>
-                <li><a asp-area="" asp-controller="Auth" asp-action="Register">Register</a></li>
+                else
+                {
+                    <li>
+                        <a asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Auth" asp-action="Register">Register</a>
+                    </li>
                 }
-                
+
             </ul>
         </div>
     </div>
 </div>
 <div class="container body-content">
     @RenderBody()
-    <hr />
-       
+    <hr/>
+
 </div>
 
 <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js">
 </script>
 
-@RenderSection("scripts", required: false)
-    <script type="text/javascript">
+@RenderSection("scripts", false)
+<script type="text/javascript">
 
-        var amountScrolled = 300;
+    var amountScrolled = 300;
 
-        $(window).scroll(function() {
-            if ($(window).scrollTop() > amountScrolled) {
-                $('a.back-to-top').fadeIn('slow');
-            } else {
-                $('a.back-to-top').fadeOut('slow');
-            }
-        });
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > amountScrolled) {
+            $('a.back-to-top').fadeIn('slow');
+        } else {
+            $('a.back-to-top').fadeOut('slow');
+        }
+    });
 
-        $('a.back-to-top, a.simple-back-to-top').click(function() {
-            $('html, body').animate({
-                    scrollTop: 0
-                },
-                700);
-            return false;
-        });
-    </script>
+    $('a.back-to-top, a.simple-back-to-top').click(function() {
+        $('html, body').animate({
+                scrollTop: 0
+            },
+            700);
+        return false;
+    });
+</script>
 </body>
 
 </html>
