@@ -1,10 +1,10 @@
 ﻿@{
-    List<string> days = new List<string>() { "Luni", "Marti", "Miercuri", "Joi", "Vineri", "Sambata", "Duminica" };
-    List<int> index = new List<int>();
+    var days = new List<string> {"Luni", "Marti", "Miercuri", "Joi", "Vineri", "Sambata", "Duminica"};
+    var index = new List<int>();
     var tableRows = ViewData["rows"] as List<string>;
     foreach (var day in days)
     {
-        for (int i = 0; i < tableRows.Count; ++i)
+        for (var i = 0; i < tableRows.Count; ++i)
         {
             if (tableRows[i].Contains(day))
             {
@@ -16,7 +16,7 @@
     index.Add(tableRows.Count);
 }
 
-
+@*
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,198 +31,218 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
 
-</head>
+</head>*@
+@{
+    ViewData["Title"] = "Orar personalizat";
+}
+
 
 <body>
-    <div class="container">
-        <h2><span class="label label-primary">Alege materiile pe care vrei sa le adaugi in orarul tau</span></h2>
+<div class="container">
+    <h2>
+        <span class="label label-primary">Alege materiile pe care vrei sa le adaugi in orarul tau</span>
+    </h2>
 
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="menu" data-toggle="dropdown">Alege Orar</button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                @{
-                    var orar = ViewData["orar"] as List<string>;
-                    if (orar.Count != 1)
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="menu" data-toggle="dropdown">Alege Orar</button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            @{
+                var orar = ViewData["orar"] as List<string>;
+                if (orar.Count != 1)
+                {
+                    foreach (var item in orar)
                     {
-                        foreach (var item in orar)
+                        var row = item.Split('|');
+                        var link = "/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/" + row[0];
+                        if (!row[1].Contains("eOra"))
                         {
-                            string[] row = item.Split('|');
-                            string link = "/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/" + row[0];
-                            if (!row[1].Contains("eOra"))
-                            {
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href=@link>@row[1]</a></li>
-                            }
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href=@link>@row[1]</a>
+                            </li>
                         }
                     }
-                    else
-                    {
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">@orar[0]</a></li>
-
-                    }
                 }
-                <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/participanti/orar_I3B5.html">Anul1 SeriaA</a></li>-->
+                else
+                {
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">@orar[0]</a>
+                    </li>
+                }
+            }
+            <!--<li role="presentation">
+                <a role="menuitem" tabindex="-1" href="/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/participanti/orar_I3B5.html">Anul1 SeriaA</a>
+            </li>-->
 
-                <li role="presentation" class="divider"></li>
-            </ul>
-        </div>
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="menu" data-toggle="dropdown">Profesori</button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
-                @{
-                    var profs = ViewData["profesori"] as List<String>;
-                    if (profs.Count != 1)
+            <li role="presentation" class="divider"></li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="menu" data-toggle="dropdown">Profesori</button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+            @{
+                var profs = ViewData["profesori"] as List<string>;
+                if (profs.Count != 1)
+                {
+                    foreach (var item in profs)
                     {
-                        foreach (var item in profs)
+                        var row = item.Split('|');
+                        var link = "/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/" + row[0];
+                        if (!row[1].Contains("eOra"))
                         {
-                            string[] row = item.Split('|');
-                            string link = "/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/" + row[0];
-                            if (!row[1].Contains("eOra"))
-                            {
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href=@link>@row[1]</a></li>
-                            }
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href=@link>@row[1]</a>
+                            </li>
                         }
                     }
-                    else
-                    {
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">@profs[0]</a></li>
-
-                    }
                 }
-                <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/participanti/orar_I3B5.html">Anul1 SeriaA</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="/">Anul1 SeriaB</a></li>-->
-                <li role="presentation" class="divider"></li>
-            </ul>
-        </div>
-
-        <table id="simple" class="table table-striped">
-            <thead>
-                <tr>
-                    @foreach (var item in ViewData["header"] as List<string>)
-                    {
-                        <th> @item </th>
-                    }
-                </tr>
-            </thead>
-            <tbody id="tableRow">
-                @{
-                    var start = ViewData["start"];
-                    for (int i = 0; i < index.Count - 1; ++i)
-                    {
-                        <tr>
-                            <td bgcolor=#CCCCFF>
-                                <b>@tableRows[index[i]]</b><!--Day-->
-                            </td>
-                        </tr>
-
-                        int a = index[i] + 1, b = a + (int)start - 1;//7
-                        while (b < index[i + 1])//until next day
-                        {
-                            var rowId = i.ToString() + "row" + a.ToString();//
-                            <tr id=@rowId draggable="true" ondragstart="drag(event)">
-                                @{for (int ii = a; ii <= b; ++ii)
-                                    {
-
-                                        <td>@tableRows[ii]</td>//iterate through day
-                                    }
-                                }
-                            </tr>
-                                            a = b + 1;
-                                            b += (int)start;//8
-                                        }
-                                    }
+                else
+                {
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">@profs[0]</a>
+                    </li>
                 }
-            </tbody>
-        </table>
-        <br />
-        <br />
-        <h2><span class="label label-primary">Orarul meu</span></h2>
-
-
-        <!--PAULA-->
-        <table id="customTable" class="table table-striped">
-            <thead>
-                <tr>
-                    @foreach (var item in ViewData["header"] as List<string>)
-                    {
-                        <th> @item </th>
-                    }
-                </tr>
-            </thead>
-            <tbody id="bodyDrop">
-                <tr id="BodyDrop " ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <td class="label label-danger">DROP HERE </td>
-
-                </tr>
-                @{
-                    var zi = 1;
-
-                    foreach (var day in days)
-                    {
-                        var idZi = zi.ToString();
-                        zi++;
-                        <tr id=@idZi>
-                            <td bgcolor=#CCCCFF>
-                                <b>@day</b>
-                            </td>
-
-                        </tr>
-
-                    }
-                }
-
-
-            </tbody>
-        </table>
-
-        <button type="button" id="fire" class="btn btn-primary btn-sm " onclick="RemoveRow();">-</button>
+            }
+            <!--<li role="presentation">
+                <a role="menuitem" tabindex="-1" href="/WebParser/ParserPage?url=http://profs.info.uaic.ro/~orar/participanti/orar_I3B5.html">Anul1 SeriaA</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="/">Anul1 SeriaB</a>
+            </li>-->
+            <li role="presentation" class="divider"></li>
+        </ul>
     </div>
 
-    <script>
-        var rowToRemove;
-        function theFunction(e) {
-            rowToRemove = e.id;
-        };
-
-        function RemoveRow() {
-
-            //window.alert(document.getElementById(rowToRemove).textContent);
-            document.getElementById(rowToRemove).remove();
-
-        };
-
-
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function drag(ev) {
-
-            ev.dataTransfer.setData('text', ev.target.id);
-
-        }
-        var count = 0;
-        function drop(ev) {
-            count++;
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            //window.alert(data[0]);
-            var s = document.createElement("tr");
-            s.innerHTML = document.getElementById(data).innerHTML;
-            var rowNumber = count.toString();
-            s.setAttribute("id", ("r" + rowNumber));
-            s.setAttribute("onclick", "theFunction(this)")
-            var raspuns = prompt("In ce zi?(ex: 1 pentru ziua de luni)", "");
-            var raspInt = parseInt(raspuns);
-            if (raspuns == "7") {
-                document.getElementById("bodyDrop").appendChild(s);
+    <table id="simple" class="table table-striped">
+        <thead>
+        <tr>
+            @foreach (var item in ViewData["header"] as List<string>)
+            {
+                <th> @item </th>
             }
-            else if(raspInt >0 && raspInt <=6) {
-                var before = parseInt(raspuns);
-                before++;
-                el = document.getElementById(before.toString());
-                document.getElementById("bodyDrop").insertBefore(s, el);
+        </tr>
+        </thead>
+        <tbody id="tableRow">
+        @{
+            var start = ViewData["start"];
+            for (var i = 0; i < index.Count - 1; ++i)
+            {
+                <tr>
+                    <td bgcolor=#CCCCFF>
+                        <b>@tableRows[index[i]]</b><!--Day-->
+                    </td>
+                </tr>
+
+                int a = index[i] + 1, b = a + (int) start - 1; //7
+                while (b < index[i + 1]) //until next day
+                {
+                    var rowId = i + "row" + a; //
+                    <tr id=@rowId draggable="true" ondragstart="drag(event)">
+                        @{
+                            for (var ii = a; ii <= b; ++ii)
+                            {
+                                <td>@tableRows[ii]</td> //iterate through day
+                            }
+                        }
+                    </tr>
+                    a = b + 1;
+                    b += (int) start; //8
+                }
             }
         }
-    </script>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+    <h2>
+        <span class="label label-primary">Orarul meu</span>
+    </h2>
+
+
+    <!--PAULA-->
+    <table id="customTable" class="table table-striped">
+        <thead>
+        <tr>
+            @foreach (var item in ViewData["header"] as List<string>)
+            {
+                <th> @item </th>
+            }
+        </tr>
+        </thead>
+        <tbody id="bodyDrop">
+        <tr id="BodyDrop " ondrop="drop(event)" ondragover="allowDrop(event)">
+            <td class="label label-danger">DROP HERE </td>
+
+        </tr>
+        @{
+            var zi = 1;
+
+            foreach (var day in days)
+            {
+                var idZi = zi.ToString();
+                zi++;
+                <tr id=@idZi>
+                    <td bgcolor=#CCCCFF>
+                        <b>@day</b>
+                    </td>
+
+                </tr>
+            }
+        }
+
+
+        </tbody>
+    </table>
+
+    <button type="button" id="fire" class="btn btn-primary btn-sm " onclick="RemoveRow();">-</button>
+</div>
+
+<script>
+    var rowToRemove;
+
+    function theFunction(e) {
+        rowToRemove = e.id;
+    };
+
+    function RemoveRow() {
+
+        //window.alert(document.getElementById(rowToRemove).textContent);
+        document.getElementById(rowToRemove).remove();
+
+    };
+
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+
+        ev.dataTransfer.setData('text', ev.target.id);
+
+    }
+
+    var count = 0;
+
+    function drop(ev) {
+        count++;
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        //window.alert(data[0]);
+        var s = document.createElement("tr");
+        s.innerHTML = document.getElementById(data).innerHTML;
+        var rowNumber = count.toString();
+        s.setAttribute("id", ("r" + rowNumber));
+        s.setAttribute("onclick", "theFunction(this)");
+        var raspuns = prompt("In ce zi?(ex: 1 pentru ziua de luni)", "");
+        var raspInt = parseInt(raspuns);
+        if (raspuns == "7") {
+            document.getElementById("bodyDrop").appendChild(s);
+        } else if (raspInt > 0 && raspInt <= 6) {
+            var before = parseInt(raspuns);
+            before++;
+            el = document.getElementById(before.toString());
+            document.getElementById("bodyDrop").insertBefore(s, el);
+        }
+    }
+</script>
 </body>
-</html>

@@ -14,16 +14,16 @@
         vm.news = [];
         vm.isBusy = true;
         vm.tooLong = false;
-       
-        $http.get("/api/get").then(function(response) {
-            angular.copy(response.data, vm.news);
+
+        $http.get("/api/getnews").then(function(response) {
+                angular.copy(response.data, vm.news);
+                console.log(response.data);
             },
             function() {
                 console.log("failure: " + status);
             }).finally(function() {
             vm.isBusy = false;
         });
-
 
         activate();
 

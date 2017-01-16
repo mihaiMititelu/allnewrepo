@@ -9,6 +9,5 @@ namespace UniFIIcation.ViewModels
 
         [Required]
         public string Password { get; set; }
-
     }
 }
