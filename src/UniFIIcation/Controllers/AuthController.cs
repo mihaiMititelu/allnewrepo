@@ -66,6 +66,10 @@ namespace UniFIIcation.Controllers
                 
                 if (result.Succeeded)
                 {
+                    if (user.TipCont == 1)
+                    {
+                        
+                    }
                     await SignInManager.SignInAsync(user, true);
 
                     return RedirectToAction("Index", "Home");
