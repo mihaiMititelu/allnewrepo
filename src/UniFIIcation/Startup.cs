@@ -45,6 +45,7 @@ namespace UniFIIcation
             //---------
 
             services.AddDbContext<FIIContext>();
+
             // Add framework services.
             services.AddMvc(config =>
             {
@@ -53,6 +54,8 @@ namespace UniFIIcation
                     config.Filters.Add(new RequireHttpsAttribute());
                 }
             });
+
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,7 +86,7 @@ namespace UniFIIcation
             });
 
 
-            //seed.EnsureSeedData().Wait();
+            seed.EnsureSeedData().Wait();
         }
     }
 }
