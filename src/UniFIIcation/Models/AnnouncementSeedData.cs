@@ -97,7 +97,7 @@ namespace UniFIIcation.Models
         public async Task AddRoles()
         {
             var stud = "Student";
-            var prof = "Professor";
+            var prof = "Profesor";
 
             var studentRole = new IdentityRole(stud);
             var professorRole = new IdentityRole(prof);

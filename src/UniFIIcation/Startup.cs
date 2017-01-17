@@ -85,7 +85,8 @@ namespace UniFIIcation
             });
 
 
-            //seed.EnsureSeedData().Wait();
+            seed.EnsureSeedData().Wait();
+            seed.AddRoles().Wait();
         }
     }
 }
