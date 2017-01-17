@@ -1,0 +1,307 @@
+﻿@model ProiectDeTest8.Models.PostariViewModel
+@{
+    ViewData["Title"] = "Postari";
+}
+<html>
+<style>
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #f0fff0
+}
+
+.sidenav .dropdown-menu {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    background-color: #222;
+    box-shadow: none;
+}
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@@media screen and (max-height: 500px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.message-bubble 
+{
+    padding: 10px 0px 10px 0px;
+}
+
+.message-bubble:nth-child(even) { background-color: #F5F5F5; }
+
+.message-bubble > *
+{
+    padding-left: 10px;    
+}
+
+.panel-body { padding: 0px; }
+
+.panel-heading { background-color: #3d6da7 !important; color: white !important; }
+
+td.whatever
+{
+    max-width: 150px;
+}
+</style>
+<body>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anul1 Sem 1<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/Postari/Index/111/">SD</a></li>
+                <li><a href="/Postari/Index/112/">ACSO</a></li>
+                <li><a href="/Postari/Index/113/">Logica</a></li>
+                <li><a href="/Postari/Index/114/">Matematică</a></li>
+                <li><a href="/Postari/Index/115/">IP</a></li>
+                <li><a href="/Postari/Index/116/">Engleza</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anul1 Sem 2<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/Postari/Index/121/">POO</a></li>
+                <li><a href="/Postari/Index/122/">SO</a></li>
+                <li><a href="/Postari/Index/123/">FAI</a></li>
+                <li><a href="/Postari/Index/124/">PS</a></li>
+                <li><a href="/Postari/Index/125/">PA</a></li>
+                <li><a href="/Postari/Index/126/">Engleza</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anul2 Sem 1<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/Postari/Index/211/">Retele</a></li>
+                <li><a href="/Postari/Index/212/">BD</a></li>
+                <li><a href="/Postari/Index/213/">AG</a></li>
+                <li><a href="/Postari/Index/214/">CDC</a></li>
+                <li><a href="/Postari/Index/215/">PLP</a></li>
+                <li><a href="/Postari/Index/216/">AG</a></li>
+                <li><a href="/Postari/Index/217/">Engleza</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anul2 Sem 2<span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="/Postari/Index/221/">TW</a></li>
+            <li><a href="/Postari/Index/222/">PA</a></li>
+            <li><a href="/Postari/Index/223/">IP</a></li>
+            <li><a href="/Postari/Index/224/">SGBD</a></li>
+            <li><a href="/Postari/Index/225/">PF</a></li>
+            <li><a href="/Postari/Index/226/">Matlab</a></li>
+            <li><a href="/Postari/Index/227/">Cripto</a></li>
+            <li><a href="/Postari/Index/228/">Engleza</a></li>
+        </ul>
+         </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anul3 Sem 1<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/Postari/Index/311/" method="post">.Net</a></li>
+                <li><a href="/Postari/Index/312/">SI</a></li>
+                <li><a href="/Postari/Index/313/">Python</a></li>
+                <li><a href="/Postari/Index/314">IA</a></li>
+                <li><a href="/Postari/Index/315/">ML</a></li>
+                <li><a href="/Postari/Index/316/">CSSO</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anul3 Sem 2<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/Postari/Index/321/">CN</a></li>
+                <li><a href="/Postari/Index/322/">GC</a></li>
+                <li><a href="/Postari/Index/323/">PBR</a></li>
+                <li><a href="/Postari/Index/324/">PDJ</a></li>
+                <li><a href="/Postari/Index/325/">ARMS</a></li>
+                <li><a href="/Postari/Index/326/">ACTN</a></li>
+                <li><a href="/Postari/Index/327/">RTP</a></li>
+                <li><a href="/Postari/Index/328/">CLOUD</a></li>
+                <li><a href="/Postari/Index/328/">MSOFFICE</a></li>
+                <li><a href="/Postari/Index/329/">SMA</a></li>
+                <li><a href="/Postari/Index/3210/">TS .NET</a></li>
+                <li><a href="/Postari/Index/3211/">Licenta</a></li>
+            </ul>
+        </li>
+    </div>
+
+    <div id="main">
+        
+        <span style="font-size:15px;cursor:pointer" onclick="openNav()">&#9776; Materii</span>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0px";
+            document.getElementById("main").style.marginLeft= "0px";
+            document.body.style.backgroundColor = "white";
+        }
+    </script>
+
+</body>
+</html>
+
+
+    <h3><i>Materia: @Html.DisplayFor(item => Model.NumeMaterie)</i></h3>
+    <div style="float: left; width: 45%;">
+        
+        <h3>File for upload</h3>
+        <form asp-action="AddUpload" asp-controller="Postari" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="materieId" value="@Model.MaterieId">
+            <input type="file" name="uploadedFile" /><br>
+            <input type="submit" value="Upload" />
+
+
+        </form>
+
+        <h3>All Files</h3>
+        <div class="well">
+                <table class="table" >
+                    <thead>
+                    <tr>
+                        <th>Files</th>
+                        <th> </th>
+                        <th>Date</th>
+                        <th>Username</th>
+                        <th style="width: 25px;"></th>
+                    </tr>
+                    </thead>
+        @foreach (var f in Model.VMUploads)
+        {
+
+
+
+            <tbody>
+            <tr>
+                <td><embed src="@Url.Content(f.Path)" width="15" height="21"/></td>
+                <td class="whatever">@Url.Content(f.Name)</td>
+                <td> @f.DateTimeUpload</td>
+                <td>@Model.NumeUser</td>
+                <td>
+                    <a href="@Url.Content(f.Path)">View</a>
+
+                    <a asp-action="DeleteFile" asp-route-id="@f.UploadId">Delete</a>
+                </td>
+            </tr>
+
+            </tbody>
+        }
+                </table>
+            </div>
+           
+        
+
+    </div>
+<div style="float: right; width: 55%;">
+    <div class="container">
+        <div class="row">
+            <a id="urlIdReview" href="" onclick="changeLink()" class="btn btn-primary btn-default">See Reviews</a>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <a id="urlId" href="" onclick="changeLink()" class="btn btn-primary btn-default">Add New Comment</a>
+            </div>
+        </div>
+
+        <script>
+        function changeLink() {
+            var newid = @Model.MaterieId;
+            var newlink = "/Postari/Create/" + newid + "/";
+            var newlinkReview = "/Review/Index/" + newid + "/";
+
+            var link = document.getElementById("urlId");
+            var linkReview = document.getElementById("urlIdReview");
+
+            link.setAttribute("href", newlink);
+            linkReview.setAttribute("href", newlinkReview);
+
+        }
+
+
+        </script>
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Chat</div>
+                    <div class="panel-body">
+                        <div class="container">
+                            @foreach (var item in Model.VMPostari)
+                            {
+                                <div class="row message-bubble">
+                                    <p class="text-muted">@Model.NumeUser</p>
+                                    <p class="text-muted">@Html.DisplayFor(modelItem => item.DateTime)</p>
+
+
+                                    <span>@Html.DisplayFor(modelItem => item.Content)</span>
+                                    <br>
+                                    <a asp-action="Edit" asp-route-id="@item.PostareId">Edit</a>
+                                    <br>
+                                    <a asp-action="Delete" asp-route-id="@item.PostareId">Delete</a>
+                                </div>
+                            }
+                        </div>
+                        <div class="panel-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    </div>
