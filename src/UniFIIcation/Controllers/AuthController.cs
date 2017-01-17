@@ -19,8 +19,9 @@ namespace UniFIIcation.Controllers
             roleManager.CreateAsync(new IdentityRole("Student"));
         }
 
-        private SignInManager<User> SignInManager { get; }
-        private UserManager<User> UserManager { get; }
+        private readonly SignInManager<User> SignInManager;
+        private readonly UserManager<User> UserManager;
+        private readonly RoleManager<IdentityRole> RoleManager;
 
         [HttpGet]
         public IActionResult Login()
@@ -70,14 +71,14 @@ namespace UniFIIcation.Controllers
                
                 if (result.Succeeded)
                 {
-                    /*if (user.TipCont == 1)
+                    if (user.TipCont == 1)
                     {
-                        
+                        await UserManager.AddToRoleAsync(user, "Studentluri");
                     }
                     if (user.TipCont == 2)
                     {
                         await UserManager.AddToRoleAsync(user, "Profesor");
-                    }*/
+                    }
                     await SignInManager.SignInAsync(user, true);
                     return RedirectToAction("Index", "Home");
                 }
