@@ -19,7 +19,7 @@
     </div>
     
 
-    @if (!ViewContext.HttpContext.User.IsInRole("Profesor"))
+    @if (ViewContext.HttpContext.User.IsInRole("Profesor"))
     {
         <div id="search-fields" class="col-md-10 col-md-offset-1">
             <form id="option-form" ng-controller="newsController">
