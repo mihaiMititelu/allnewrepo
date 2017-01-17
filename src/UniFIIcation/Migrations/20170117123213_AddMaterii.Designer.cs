@@ -8,9 +8,10 @@ using UniFIIcation.Models;
 namespace UniFIIcation.Migrations
 {
     [DbContext(typeof(FIIContext))]
-    partial class FIIContextModelSnapshot : ModelSnapshot
+    [Migration("20170117123213_AddMaterii")]
+    partial class AddMaterii
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")

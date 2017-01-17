@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProiectDeTest8.Models
+namespace UniFIIcation.Models
 {
     public class Postare
     {

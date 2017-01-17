@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ProiectDeTest8.Models
+namespace UniFIIcation.Models
 {
     public class PostariViewModel
     {

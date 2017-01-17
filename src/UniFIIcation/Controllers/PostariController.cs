@@ -1,24 +1,20 @@
-﻿
-
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ProiectDeTest8.Models;
+using UniFIIcation.Models;
 
-
-namespace ProiectDeTest8.Controllers
+namespace UniFIIcation.Controllers
 {
     public class PostariController : Controller
     {
 
-        readonly MatContext _context;
+        readonly FIIContext _context;
         readonly IHostingEnvironment _appEnvironment;
 
-        public PostariController(MatContext context, IHostingEnvironment appEnvironment)
+        public PostariController(FIIContext context, IHostingEnvironment appEnvironment)
         {
             _context = context;
             _appEnvironment = appEnvironment;
