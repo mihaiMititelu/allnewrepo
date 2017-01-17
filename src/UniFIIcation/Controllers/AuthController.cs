@@ -9,14 +9,19 @@ namespace UniFIIcation.Controllers
 {
     public class AuthController : Controller
     {
-        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
         {
             SignInManager = signInManager;
             UserManager = userManager;
+            RoleManager = roleManager;
+
+            roleManager.CreateAsync(new IdentityRole("Profesor"));
+            roleManager.CreateAsync(new IdentityRole("Student"));
         }
 
-        private SignInManager<User> SignInManager { get; }
-        private UserManager<User> UserManager { get; }
+        private readonly SignInManager<User> SignInManager;
+        private readonly  UserManager<User> UserManager;
+        private readonly RoleManager<IdentityRole> RoleManager;
 
         [HttpGet]
         public IActionResult Login()
@@ -32,7 +37,7 @@ namespace UniFIIcation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userName = vm.Username.Replace(".", "");
+                var userName = vm.Username;
                 var signInResult = await SignInManager.PasswordSignInAsync(userName, vm.Password, true, false);
 
                 if (signInResult.Succeeded)
@@ -68,12 +73,17 @@ namespace UniFIIcation.Controllers
                 {
                     if (user.TipCont == 1)
                     {
-                        
+                       await UserManager.AddToRoleAsync(user, "Student");
+                    }
+                    else
+                    {
+                       await UserManager.AddToRoleAsync(user, "Profesor");
                     }
                     await SignInManager.SignInAsync(user, true);
 
                     return RedirectToAction("Index", "Home");
                 }
+
                 foreach (var identityError in result.Errors)
                     ModelState.AddModelError("", identityError.Description);
             }

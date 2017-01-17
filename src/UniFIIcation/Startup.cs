@@ -34,6 +34,7 @@ namespace UniFIIcation
             services.AddIdentity<User, IdentityRole>(config =>
             {
                 config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+                config.User.RequireUniqueEmail = true;
                 config.Password.RequireUppercase = false;
                 config.Password.RequireNonAlphanumeric = false;
                 config.Password.RequireDigit = false;
