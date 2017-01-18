@@ -86,7 +86,6 @@ namespace UniFIIcation
 
 
             seed.EnsureSeedData().Wait();
-            seed.AddRoles().Wait();
         }
     }
 }

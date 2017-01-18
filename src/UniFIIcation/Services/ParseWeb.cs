@@ -11,12 +11,11 @@ namespace UniFIIcation.Services
         public List<string> ExtractContent(string url)
         {
             var content = new List<string>();
-            var row = string.Empty;
 
-            var Webget = new HtmlWeb();
+            var webget = new HtmlWeb();
             try
             {
-                var doc = Webget.LoadFromWebAsync(url).Result;
+                var doc = webget.LoadFromWebAsync(url).Result;
                 var headers = doc.DocumentNode.Descendants("th")
                     .Select(e => e.InnerText);
                 //.Where(s => !String.IsNullOrEmpty(s));
@@ -27,8 +26,8 @@ namespace UniFIIcation.Services
 
                 foreach (var item in data)
                 {
-                    var noHTML = Regex.Replace(item, @"&nbsp;", "--");
-                    content.Add(noHTML);
+                    var noHtml = Regex.Replace(item, @"&nbsp;", "--");
+                    content.Add(noHtml);
                 }
             }
             catch (Exception ex)
@@ -42,17 +41,15 @@ namespace UniFIIcation.Services
         public List<string> ExtractOptions(string url)
         {
             var content = new List<string>();
-            var row = string.Empty;
 
-            var Webget = new HtmlWeb();
+            var webget = new HtmlWeb();
             try
             {
-                var doc = Webget.LoadFromWebAsync(url).Result;
+                var doc = webget.LoadFromWebAsync(url).Result;
                 var options = doc.DocumentNode.Descendants("a")
                     .Select(e => e);
                 //.Where(s => !String.IsNullOrEmpty(s));
-                foreach (var item in options)
-                    content.Add(item.Attributes["href"].Value + "|" + item.InnerText);
+                content.AddRange(options.Select(item => item.Attributes["href"].Value + "|" + item.InnerText));
                 //content=options.ToList<string>();
             }
             catch (Exception ex)

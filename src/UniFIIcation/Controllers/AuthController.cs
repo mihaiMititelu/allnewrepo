@@ -11,17 +11,15 @@ namespace UniFIIcation.Controllers
     {
         public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
         {
-            SignInManager = signInManager;
-            UserManager = userManager;
-            RoleManager = roleManager;
+            _signInManager = signInManager;
+            _userManager = userManager;
 
             roleManager.CreateAsync(new IdentityRole("Profesor"));
             roleManager.CreateAsync(new IdentityRole("Student"));
         }
 
-        private readonly SignInManager<User> SignInManager;
-        private readonly UserManager<User> UserManager;
-        private readonly RoleManager<IdentityRole> RoleManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
 
         [HttpGet]
         public IActionResult Login()
@@ -38,7 +36,7 @@ namespace UniFIIcation.Controllers
             if (ModelState.IsValid)
             {
                 var userName = vm.Username;
-                var signInResult = await SignInManager.PasswordSignInAsync(userName, vm.Password, true, false);
+                var signInResult = await _signInManager.PasswordSignInAsync(userName, vm.Password, true, false);
 
                 if (signInResult.Succeeded)
                     if (string.IsNullOrWhiteSpace(returnUrl))
@@ -54,38 +52,36 @@ namespace UniFIIcation.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(RegisterViewModel vm)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View();
+            var user = new User
             {
-                var user = new User
-                {
-                    Email = vm.Email.Trim(),
-                    UserName = vm.Email.Substring(0, vm.Email.IndexOf('@')).Trim(),
-                    Nume = vm.Nume.Trim(),
-                    Prenume = vm.Prenume.Trim(),
-                    Password = vm.Password.Trim(),
-                    An = vm.An,
-                    TipCont = vm.TipCont
-                };
+                Email = vm.Email.Trim(),
+                UserName = vm.Email.Substring(0, vm.Email.IndexOf('@')).Trim(),
+                Nume = vm.Nume.Trim(),
+                Prenume = vm.Prenume.Trim(),
+                Password = vm.Password.Trim(),
+                An = vm.An,
+                TipCont = vm.TipCont
+            };
               
-                var result = await UserManager.CreateAsync(user, vm.Password);
+            var result = await _userManager.CreateAsync(user, vm.Password);
                
-                if (result.Succeeded)
+            if (result.Succeeded)
+            {
+                if (user.TipCont == 1)
                 {
-                    if (user.TipCont == 1)
-                    {
-                        await UserManager.AddToRoleAsync(user, "Studentluri");
-                    }
-                    if (user.TipCont == 2)
-                    {
-                        await UserManager.AddToRoleAsync(user, "Profesor");
-                    }
-                    await SignInManager.SignInAsync(user, true);
-                    return RedirectToAction("Index", "Home");
+                    await _userManager.AddToRoleAsync(user, "Studentluri");
                 }
-
-                foreach (var identityError in result.Errors)
-                    ModelState.AddModelError("", identityError.Description);
+                if (user.TipCont == 2)
+                {
+                    await _userManager.AddToRoleAsync(user, "Profesor");
+                }
+                await _signInManager.SignInAsync(user, true);
+                return RedirectToAction("Index", "Home");
             }
+
+            foreach (var identityError in result.Errors)
+                ModelState.AddModelError("", identityError.Description);
             return View();
         }
 
@@ -101,7 +97,7 @@ namespace UniFIIcation.Controllers
         public async Task<ActionResult> Logout()
         {
             if (User.Identity.IsAuthenticated)
-                await SignInManager.SignOutAsync();
+                await _signInManager.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
         }

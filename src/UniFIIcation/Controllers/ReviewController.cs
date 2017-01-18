@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +7,7 @@ using UniFIIcation.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 
-namespace ReviewWebSite.Controllers
+namespace UniFIIcation.Controllers
 {
     public class ReviewController : Controller
     {
@@ -49,13 +50,10 @@ namespace ReviewWebSite.Controllers
         [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Comment,DateTime,Email,Name,Rating")] ReviewModel reviewModel)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(reviewModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(reviewModel);
+            if (!ModelState.IsValid) return View(reviewModel);
+            _context.Add(reviewModel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         [Authorize]
@@ -96,10 +94,7 @@ namespace ReviewWebSite.Controllers
                     {
                         return NotFound();
                     }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
                 return RedirectToAction("Index");
             }

@@ -11,13 +11,7 @@ namespace ReviewWebSite.Models
         [Key]
         public int Id { get; set; }
 
-        private DateTime _insDate = DateTime.Now;
-
-        public DateTime DateTime
-        {
-            get { return _insDate; }
-            set { _insDate = value; }
-        }
+        public DateTime DateTime { get; set; } = DateTime.Now;
 
         //public DateTime DateTime { get; set; }
         [Required]
