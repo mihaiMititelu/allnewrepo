@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -59,6 +60,7 @@ namespace UniFIIcation.Controllers
             return View(model);
         }
 
+        [Authorize]
         public IActionResult Create(int? id)
         {
             if (id == null)
@@ -77,7 +79,7 @@ namespace UniFIIcation.Controllers
 
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create(Postare postare)
         {
             if (ModelState.IsValid)
@@ -95,7 +97,7 @@ namespace UniFIIcation.Controllers
             return RedirectToAction("Index");
         }
 
-        //CRUD
+        [Authorize]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -115,6 +117,7 @@ namespace UniFIIcation.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(Postare postare)
         {
 
@@ -134,6 +137,7 @@ namespace UniFIIcation.Controllers
 
         }
 
+        [Authorize]
         public async Task<IActionResult> Delete(Guid? id)
         {
             int matID=0;
@@ -164,6 +168,8 @@ namespace UniFIIcation.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [Authorize(Roles = "Profesor")]
         public async Task<IActionResult> AddUpload(int materieId, IFormFile uploadedFile)
         {
             if (materieId == 0)
@@ -185,7 +191,7 @@ namespace UniFIIcation.Controllers
             return RedirectToAction("/Index/"+ materieId);
         }
 
-
+        [Authorize]
         public async Task<IActionResult> DeleteFile(Guid? id)
         {
             int matID = 0;

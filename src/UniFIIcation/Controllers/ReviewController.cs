@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ReviewWebSite.Models;
 using UniFIIcation.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ReviewWebSite.Controllers
 {
@@ -21,7 +22,6 @@ namespace ReviewWebSite.Controllers
             return View(await _context.Reviews.ToListAsync());
         }
 
-        // GET: ReviewModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,12 +39,14 @@ namespace ReviewWebSite.Controllers
         }
 
         // GET: ReviewModels/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Comment,DateTime,Email,Name,Rating")] ReviewModel reviewModel)
         {
             if (ModelState.IsValid)
@@ -56,6 +58,7 @@ namespace ReviewWebSite.Controllers
             return View(reviewModel);
         }
 
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,6 +75,7 @@ namespace ReviewWebSite.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Comment,DateTime,Email,Name,Rating")] ReviewModel reviewModel)
         {
             if (id != reviewModel.Id)
@@ -102,6 +106,7 @@ namespace ReviewWebSite.Controllers
             return View(reviewModel);
         }
 
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -119,6 +124,7 @@ namespace ReviewWebSite.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var reviewModel = await _context.Reviews.SingleOrDefaultAsync(m => m.Id == id);
