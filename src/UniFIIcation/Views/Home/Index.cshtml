@@ -18,7 +18,8 @@
         <hr/>
     </div>
 
-
+@if (ViewContext.HttpContext.User.IsInRole("Profesor"))
+{
     <div id="search-fields" class="col-md-10 col-md-offset-1">
         <form id="option-form" ng-controller="newsController">
             <a asp-controller="AddNews" asp-action="AddNews" style="float: right" class="btn btn-default btn-primary">
@@ -26,7 +27,7 @@
             </a>
         </form>
     </div>
-
+}
 
     <div class="wrapper-box col-md-11 col-md-offset-1" id="wrapper">
 

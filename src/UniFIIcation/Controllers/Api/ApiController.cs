@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UniFIIcation.Models;
 
@@ -15,11 +14,5 @@ namespace UniFIIcation.Controllers.Api
             return Json(_context.Announcements.ToList());
         }
 
-        [Authorize]
-        [HttpGet("api/getuser")]
-        public JsonResult GetUser()
-        {
-            return Json(_context.Users.ToList());
-        }
     }
 }

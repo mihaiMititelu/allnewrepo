@@ -1,17 +1,4 @@
-﻿@*<head>
-    <meta charset="utf-8" />
-
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-
-
-</head>*@
-@{
+﻿@{
     ViewData["Title"] = "Orar";
 }
 
@@ -23,7 +10,7 @@
 
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="menu" data-toggle="dropdown">Alege Orar</button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu">
             @{
                 var orar = ViewData["orar"] as List<string>;
                 if (orar.Count != 1)

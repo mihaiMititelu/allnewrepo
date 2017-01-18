@@ -10,11 +10,8 @@ namespace UniFIIcation.Controllers
 {
     public class WebParserController : Controller
     {
-        private readonly IMyParseWeb _parseService;
-
         public WebParserController(IMyParseWeb web)
         {
-            _parseService = web;
         }
 
         //http://localhost:23620/text/extract?spec=a&input=Anamaria
