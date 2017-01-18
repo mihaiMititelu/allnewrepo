@@ -4,10 +4,10 @@ namespace UniFIIcation.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Campul este obligatoriu")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Campul este obligatoriu")]
         public string Password { get; set; }
     }
 }

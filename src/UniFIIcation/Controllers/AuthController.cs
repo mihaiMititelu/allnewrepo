@@ -70,7 +70,7 @@ namespace UniFIIcation.Controllers
             {
                 if (user.TipCont == 1)
                 {
-                    await _userManager.AddToRoleAsync(user, "Studentluri");
+                    await _userManager.AddToRoleAsync(user, "Studenti");
                 }
                 if (user.TipCont == 2)
                 {
@@ -80,8 +80,7 @@ namespace UniFIIcation.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            foreach (var identityError in result.Errors)
-                ModelState.AddModelError("", identityError.Description);
+                ModelState.AddModelError("", "Email-ul exista deja");
             return View();
         }
 
