@@ -9,10 +9,6 @@ namespace UniFIIcation.Controllers
             return View();
         }
 
-        public IActionResult Orar()
-        {
-            return View();
-        }
 
         public IActionResult Materii()
         {

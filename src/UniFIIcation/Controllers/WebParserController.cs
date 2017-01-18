@@ -71,7 +71,7 @@ namespace UniFIIcation.Controllers
                     lst2.Add(computed[i]);
                 var days = new List<string> {"Luni", "Marti", "Miercuri", "Joi", "Vineri", "Sambata", "Duminica"};
                 foreach (var day in days)
-                    if (lst2.Where(e => e.Contains(day)).Count() > 1)
+                    if (lst2.Count(e => e.Contains(day)) > 1)
                     {
                         var p = lst2.FindIndex(lst2.FindIndex(x => x.Contains(day)) + 1, x => x.Contains(day));
                         lst2.RemoveRange(p, lst2.Count - p);

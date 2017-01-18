@@ -10,12 +10,7 @@ namespace UniFIIcation.Models
         public string Name { get; set; }
         public string Path { get; set; }
 
-        private DateTime _insDate = DateTime.Now;
-        public DateTime DateTimeUpload
-        {
-            get { return _insDate; }
-            set { _insDate = value; }
-        }
+        public DateTime DateTimeUpload { get; set; } = DateTime.Now;
 
         public Guid UserId { get; set; }
         public int MaterieId { get; set; }

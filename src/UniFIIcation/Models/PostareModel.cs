@@ -7,16 +7,12 @@ namespace UniFIIcation.Models
     {
         [Required]
         public Guid PostareId { get; set; }
+
         [MaxLength(1000)]
         [Required]
         public string Content { get; set; }
 
-        private DateTime _insDate = DateTime.Now;
-        public DateTime DateTime
-        {
-            get { return _insDate; }
-            set { _insDate = value; }
-        }
+        public DateTime DateTime { get; set; } = DateTime.Now;
 
 
         public Guid UserId { get; set; }

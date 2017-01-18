@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Postari";
 }
-<html>
+
 <style>
 body {
     font-family: "Lato", sans-serif;
@@ -67,7 +67,7 @@ body {
 
 .message-bubble 
 {
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0 10px 0px;
 }
 
 .message-bubble:nth-child(even) { background-color: #F5F5F5; }
@@ -188,7 +188,6 @@ td.whatever
     </script>
 
 </body>
-</html>
 
 
     <h3><i>Materia: @Html.DisplayFor(item => Model.NumeMaterie)</i></h3>
@@ -215,7 +214,7 @@ td.whatever
                         <th style="width: 25px;"></th>
                     </tr>
                     </thead>
-        @foreach (var f in Model.VMUploads)
+        @foreach (var f in Model.VmUploads)
         {
 
 
@@ -276,7 +275,7 @@ td.whatever
                     <div class="panel-heading">Chat</div>
                     <div class="panel-body">
                         <div class="container">
-                            @foreach (var item in Model.VMPostari)
+                            @foreach (var item in Model.VmPostari)
                             {
                                 <div class="row message-bubble">
                                     <p class="text-muted">@Model.NumeUser</p>
