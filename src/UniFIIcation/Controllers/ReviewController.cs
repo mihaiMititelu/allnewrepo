@@ -18,10 +18,21 @@ namespace UniFIIcation.Controllers
             _context = context;    
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int idMaterie)
         {
-            return View(await _context.Reviews.ToListAsync());
+            //int idMaterie = 1;
+            ViewData["CurrentFilter"] = idMaterie;
+
+            var reviews = from r in _context.Reviews
+                          select r;
+
+            if (idMaterie != 0)
+            {
+                reviews = reviews.Where(r => r.IdMaterie.Equals(idMaterie));
+            }
+            return View(await reviews.AsNoTracking().ToListAsync());
         }
+
 
         public async Task<IActionResult> Details(int? id)
         {

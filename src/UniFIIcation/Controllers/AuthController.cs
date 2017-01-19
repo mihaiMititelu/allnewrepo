@@ -70,7 +70,7 @@ namespace UniFIIcation.Controllers
             {
                 if (user.TipCont == 1)
                 {
-                    await _userManager.AddToRoleAsync(user, "Studenti");
+                    await _userManager.AddToRoleAsync(user, "Student");
                 }
                 if (user.TipCont == 2)
                 {

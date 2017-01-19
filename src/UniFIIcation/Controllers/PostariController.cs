@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UniFIIcation.Models;
 
@@ -14,12 +15,13 @@ namespace UniFIIcation.Controllers
         private readonly FIIContext _context;
         private readonly IHostingEnvironment _appEnvironment;
 
+
         public PostariController(FIIContext context, IHostingEnvironment appEnvironment)
         {
             _context = context;
             _appEnvironment = appEnvironment;
-        }
 
+        }
 
         public IActionResult Index(int? id)
         {
@@ -54,6 +56,7 @@ namespace UniFIIcation.Controllers
                     model.MaterieId = m.MaterieId;
                 }
             }
+            model.NumeUser = User.Identity.Name;
             model.VmPostari.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
             return View(model);
         }

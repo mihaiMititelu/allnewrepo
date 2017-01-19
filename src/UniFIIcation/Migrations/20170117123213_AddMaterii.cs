@@ -9,22 +9,6 @@ namespace UniFIIcation.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Reviews",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Comment = table.Column<string>(maxLength: 1000, nullable: false),
-                    DateTime = table.Column<DateTime>(nullable: false),
-                    Email = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 20, nullable: false),
-                    Rating = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Reviews", x => x.Id);
-                });
 
             migrationBuilder.CreateTable(
                 name: "Materii",
@@ -38,6 +22,32 @@ namespace UniFIIcation.Migrations
                 {
                     table.PrimaryKey("PK_Materii", x => x.MaterieId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    IdMaterie = table.Column<int>(nullable: false),
+                    Comment = table.Column<string>(maxLength: 1000, nullable: false),
+                    DateTime = table.Column<DateTime>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 20, nullable: false),
+                    Rating = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Materii_MaterieId",
+                        column: x => x.IdMaterie,
+                        principalTable: "Materii",
+                        principalColumn: "MaterieId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            
 
             migrationBuilder.CreateTable(
                 name: "Postari",

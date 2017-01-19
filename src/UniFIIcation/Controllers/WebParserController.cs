@@ -19,22 +19,11 @@ namespace UniFIIcation.Controllers
         // GET: /<controller>/
         public IActionResult Welcome([FromServices] IMyParseWeb web)
         {
-            ViewData["header"] = new List<string>();
-            ViewData["rows"] = new List<string>();
-            ViewData["start"] = 0;
+            //ViewData["header"] = new List<string>();
+            //ViewData["rows"] = new List<string>();
+            //ViewData["start"] = 0;
 
-            try
-            {
-                var lines = System.IO.File.ReadAllLines("sites.txt");
-                ViewData["orar"] = web.ExtractOptions(lines[0]);
-                ViewData["profesori"] = web.ExtractOptions(lines[1]);
-            }
-            catch (Exception ex)
-            {
-                var except = new ParseWeb().ParseException(ex.ToString());
-                ViewData["orar"] = web.ExtractOptions(except);
-                ViewData["profesori"] = web.ExtractOptions(except);
-            }
+            readContent(web);
             return View();
         }
 
@@ -89,6 +78,11 @@ namespace UniFIIcation.Controllers
             ViewData["rows"] = lst2;
             ViewData["start"] = startFrom;
 
+            readContent(web);
+            return View();
+        }
+        private void readContent(IMyParseWeb web)
+        {
             try
             {
                 var lines = System.IO.File.ReadAllLines("sites.txt");
@@ -101,7 +95,6 @@ namespace UniFIIcation.Controllers
                 ViewData["orar"] = web.ExtractOptions(except);
                 ViewData["profesori"] = web.ExtractOptions(except);
             }
-            return View();
         }
     }
 }

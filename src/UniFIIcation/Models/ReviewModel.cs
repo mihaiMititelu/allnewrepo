@@ -10,6 +10,8 @@ namespace ReviewWebSite.Models
     {
         [Key]
         public int Id { get; set; }
+        
+        public int IdMaterie { get; set; }
 
         public DateTime DateTime { get; set; } = DateTime.Now;
 
