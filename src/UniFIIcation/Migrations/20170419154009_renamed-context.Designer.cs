@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using UniFIIcation.Models;
+using DungeonMaster.Models;
 
-namespace UniFIIcation.Migrations
+namespace DungeonMaster.Migrations
 {
-    [DbContext(typeof(FIIContext))]
-    [Migration("20170107065030_Announcements")]
-    partial class Announcements
+    [DbContext(typeof(DungeonMasterContext))]
+    [Migration("20170419154009_renamed-context")]
+    partial class renamedcontext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -121,29 +121,6 @@ namespace UniFIIcation.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("UniFIIcation.Models.Announcement", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Author")
-                        .IsRequired();
-
-                    b.Property<DateTime>("PublishDate");
-
-                    b.Property<string>("TextContent")
-                        .IsRequired()
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Announcements");
                 });
 
             modelBuilder.Entity("UniFIIcation.Models.User", b =>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace UniFIIcation.Controllers
+namespace DungeonMaster.Controllers
 {
     public class HomeController : Controller
     {

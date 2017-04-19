@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using UniFIIcation.Models;
+using DungeonMaster.Models;
 
-namespace UniFIIcation.Migrations
+namespace DungeonMaster.Migrations
 {
-    [DbContext(typeof(FIIContext))]
+    [DbContext(typeof(DungeonMasterContext))]
     partial class FIIContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -122,113 +122,6 @@ namespace UniFIIcation.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ReviewWebSite.Models.ReviewModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasMaxLength(1000);
-
-                    b.Property<DateTime>("DateTime");
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<int>("IdMaterie");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Rating")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("UniFIIcation.Models.Announcement", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Author")
-                        .IsRequired();
-
-                    b.Property<DateTime>("PublishDate");
-
-                    b.Property<string>("TextContent")
-                        .IsRequired()
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Announcements");
-                });
-
-            modelBuilder.Entity("UniFIIcation.Models.Materie", b =>
-                {
-                    b.Property<int>("MaterieId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("MaterieId");
-
-                    b.ToTable("Materii");
-                });
-
-            modelBuilder.Entity("UniFIIcation.Models.Postare", b =>
-                {
-                    b.Property<Guid>("PostareId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(1000);
-
-                    b.Property<DateTime>("DateTime");
-
-                    b.Property<int>("MaterieId");
-
-                    b.Property<Guid>("UserId");
-
-                    b.HasKey("PostareId");
-
-                    b.HasIndex("MaterieId");
-
-                    b.ToTable("Postari");
-                });
-
-            modelBuilder.Entity("UniFIIcation.Models.Upload", b =>
-                {
-                    b.Property<Guid>("UploadId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateTimeUpload");
-
-                    b.Property<int>("MaterieId");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Path");
-
-                    b.Property<Guid>("UserId");
-
-                    b.HasKey("UploadId");
-
-                    b.HasIndex("MaterieId");
-
-                    b.ToTable("Uploads");
-                });
-
             modelBuilder.Entity("UniFIIcation.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -323,22 +216,6 @@ namespace UniFIIcation.Migrations
                     b.HasOne("UniFIIcation.Models.User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("UniFIIcation.Models.Postare", b =>
-                {
-                    b.HasOne("UniFIIcation.Models.Materie", "Materie")
-                        .WithMany("Postari")
-                        .HasForeignKey("MaterieId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("UniFIIcation.Models.Upload", b =>
-                {
-                    b.HasOne("UniFIIcation.Models.Materie", "Materie")
-                        .WithMany("Uploads")
-                        .HasForeignKey("MaterieId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using UniFIIcation.Models;
+using DungeonMaster.Models;
 
-namespace UniFIIcation.Migrations
+namespace DungeonMaster.Migrations
 {
-    [DbContext(typeof(FIIContext))]
-    [Migration("20161221223209_Initial1")]
-    partial class Initial1
+    [DbContext(typeof(DungeonMasterContext))]
+    [Migration("20170419153404_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

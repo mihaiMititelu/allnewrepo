@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using UniFIIcation.Models;
-using UniFIIcation.Services;
+using DungeonMaster.Models;
 
-namespace UniFIIcation
+namespace DungeonMaster
 {
     public class Startup
     {
@@ -30,7 +29,6 @@ namespace UniFIIcation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<AnnouncementSeedData>();
             services.AddIdentity<User, IdentityRole>(config =>
             {
                 config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
@@ -38,13 +36,11 @@ namespace UniFIIcation
                 config.Password.RequireUppercase = false;
                 config.Password.RequireNonAlphanumeric = false;
                 config.Password.RequireDigit = false;
-            }).AddEntityFrameworkStores<FIIContext>();
+            }).AddEntityFrameworkStores<DungeonMasterContext>();
 
-            //orar
-            services.AddTransient<IMyParseWeb, ParseWeb>();
-            //---------
+    
 
-            services.AddDbContext<FIIContext>();
+            services.AddDbContext<DungeonMasterContext>();
 
             // Add framework services.
             services.AddMvc(config =>
@@ -57,8 +53,7 @@ namespace UniFIIcation
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-            AnnouncementSeedData seed)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -84,8 +79,6 @@ namespace UniFIIcation
                     "{controller=Home}/{action=Index}/{id?}");
             });
 
-
-            //seed.EnsureSeedData().Wait();
         }
     }
 }

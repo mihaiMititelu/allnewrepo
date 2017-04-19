@@ -10,49 +10,7 @@
     <link rel="stylesheet" href="~/css/site.css"/>
 </head>
 <body style="background-color: whitesmoke">
-<div class="navbar navbar-default navbar-custom">
-    <div class="container">
-        <div class="navbar-header">
-            <img src="/images/logo_fii3.png" alt="FII" width="45" height="45"/>
-            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">UniFIIcation</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li>
-                    <a asp-area="" asp-controller="WebParser" asp-action="Welcome">Orar</a>
-                </li>
-                <li>
-                    <a asp-area="" asp-controller="Postari" asp-action="Index">Materii</a>
-                </li>
-                <li>
-                    <a asp-area="" asp-controller="Review" asp-action="Index">Review</a>
-                </li>
 
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <li>
-                        <a asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a>
-                    </li>
-                }
-                else
-                {
-                    <li>
-                        <a asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-controller="Auth" asp-action="Register">Register</a>
-                    </li>
-                }
-
-            </ul>
-        </div>
-    </div>
-</div>
 <div class="container body-content">
     @RenderBody()
     <hr/>
@@ -60,28 +18,6 @@
 </div>
 
 <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js">
-</script>
-
-@RenderSection("scripts", false)
-<script type="text/javascript">
-
-    var amountScrolled = 300;
-
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > amountScrolled) {
-            $('a.back-to-top').fadeIn('slow');
-        } else {
-            $('a.back-to-top').fadeOut('slow');
-        }
-    });
-
-    $('a.back-to-top, a.simple-back-to-top').click(function() {
-        $('html, body').animate({
-                scrollTop: 0
-            },
-            700);
-        return false;
-    });
 </script>
 </body>
 

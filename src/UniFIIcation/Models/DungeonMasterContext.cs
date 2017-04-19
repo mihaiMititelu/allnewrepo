@@ -1,17 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ReviewWebSite.Models;
 
-namespace UniFIIcation.Models
+
+namespace DungeonMaster.Models
 {
-    public class FIIContext : IdentityDbContext<User>
+    public class DungeonMasterContext : IdentityDbContext<User>
     {
-        public DbSet<Announcement> Announcements { get; set; }
-        public DbSet<ReviewModel> Reviews { get; set; }
-
-        public DbSet<Materie> Materii { get; set; }
-        public DbSet<Postare> Postari { get; set; }
-        public DbSet<Upload> Uploads { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

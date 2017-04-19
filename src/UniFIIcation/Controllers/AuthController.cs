@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using UniFIIcation.Models;
-using UniFIIcation.ViewModels;
+using DungeonMaster.Models;
+using DungeonMaster.ViewModels;
 
-namespace UniFIIcation.Controllers
+namespace DungeonMaster.Controllers
 {
     public class AuthController : Controller
     {
@@ -13,9 +13,6 @@ namespace UniFIIcation.Controllers
         {
             _signInManager = signInManager;
             _userManager = userManager;
-
-            roleManager.CreateAsync(new IdentityRole("Profesor"));
-            roleManager.CreateAsync(new IdentityRole("Student"));
         }
 
         private readonly SignInManager<User> _signInManager;
@@ -36,14 +33,18 @@ namespace UniFIIcation.Controllers
             if (ModelState.IsValid)
             {
                 var userName = vm.Username;
+#pragma warning disable CS1701 // Assuming assembly reference matches identity
                 var signInResult = await _signInManager.PasswordSignInAsync(userName, vm.Password, true, false);
+#pragma warning restore CS1701 // Assuming assembly reference matches identity
 
                 if (signInResult.Succeeded)
                     if (string.IsNullOrWhiteSpace(returnUrl))
                         return RedirectToAction("Index", "Home");
                     else
                         return Redirect(returnUrl);
-                ModelState.AddModelError("", "Email-ul sau parola greșite");
+#pragma warning disable CS1701 // Assuming assembly reference matches identity
+                ModelState.AddModelError("", "Email or password wrong");
+#pragma warning restore CS1701 // Assuming assembly reference matches identity
             }
 
             return View();
@@ -57,30 +58,18 @@ namespace UniFIIcation.Controllers
             {
                 Email = vm.Email.Trim(),
                 UserName = vm.Email.Substring(0, vm.Email.IndexOf('@')).Trim(),
-                Nume = vm.Nume.Trim(),
-                Prenume = vm.Prenume.Trim(),
                 Password = vm.Password.Trim(),
-                An = vm.An,
-                TipCont = vm.TipCont
             };
               
             var result = await _userManager.CreateAsync(user, vm.Password);
                
             if (result.Succeeded)
             {
-                if (user.TipCont == 1)
-                {
-                    await _userManager.AddToRoleAsync(user, "Student");
-                }
-                if (user.TipCont == 2)
-                {
-                    await _userManager.AddToRoleAsync(user, "Profesor");
-                }
                 await _signInManager.SignInAsync(user, true);
                 return RedirectToAction("Index", "Home");
             }
 
-                ModelState.AddModelError("", "Email-ul exista deja");
+            ModelState.AddModelError("", "Email already in use!");
             return View();
         }
 

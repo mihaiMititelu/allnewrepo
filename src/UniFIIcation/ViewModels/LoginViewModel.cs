@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UniFIIcation.ViewModels
+namespace DungeonMaster.ViewModels
 {
     public class LoginViewModel
     {

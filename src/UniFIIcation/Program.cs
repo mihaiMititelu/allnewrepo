@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace UniFIIcation
+namespace DungeonMaster
 {
     public class Program
     {
