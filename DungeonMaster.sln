@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DungeonMaster", "src\UniFIIcation\DungeonMaster.xproj", "{27861173-350D-4C9D-856F-67CBB88AEC3D}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DungeonMaster", "src\DungeonMaster\DungeonMaster.xproj", "{6FAD7156-6AFB-42E7-98AD-CB879450E8DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,15 +18,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{27861173-350D-4C9D-856F-67CBB88AEC3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27861173-350D-4C9D-856F-67CBB88AEC3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27861173-350D-4C9D-856F-67CBB88AEC3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27861173-350D-4C9D-856F-67CBB88AEC3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FAD7156-6AFB-42E7-98AD-CB879450E8DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAD7156-6AFB-42E7-98AD-CB879450E8DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAD7156-6AFB-42E7-98AD-CB879450E8DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAD7156-6AFB-42E7-98AD-CB879450E8DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{27861173-350D-4C9D-856F-67CBB88AEC3D} = {720C5058-D261-4C67-A281-6F4A790B5569}
+		{6FAD7156-6AFB-42E7-98AD-CB879450E8DA} = {720C5058-D261-4C67-A281-6F4A790B5569}
 	EndGlobalSection
 EndGlobal

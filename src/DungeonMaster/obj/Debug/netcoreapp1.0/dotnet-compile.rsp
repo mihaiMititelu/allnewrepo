@@ -1,5 +1,5 @@
---temp-output:C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\obj\Debug\netcoreapp1.0\
---out:C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\bin\Debug\netcoreapp1.0\UniFIIcation.dll
+--temp-output:C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\obj\Debug\netcoreapp1.0\
+--out:C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\bin\Debug\netcoreapp1.0\DungeonMaster.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -8,7 +8,7 @@
 --suppress-warning:CS1705
 --optimize:False
 --emit-entry-point:True
---output-name:UniFIIcation
+--output-name:DungeonMaster
 --file-version:1.0.0.0
 --version:1.0.0.0
 --informational-version:1.0.0
@@ -206,17 +206,17 @@
 --reference:C:\Users\mititelu\.nuget\packages\System.Threading.Timer\4.3.0\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\mititelu\.nuget\packages\System.Xml.ReaderWriter\4.3.0\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\mititelu\.nuget\packages\System.Xml.XDocument\4.3.0\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\obj\Debug\netcoreapp1.0\UniFIIcationdotnet-compile.deps.json",UniFIIcation.deps.json
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Program.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Startup.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Controllers\AuthController.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Controllers\HomeController.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Migrations\20170420103831_asdasf.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Migrations\20170420103831_asdasf.Designer.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Migrations\DungeonMasterContextModelSnapshot.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Models\Competition.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Models\DungeonMasterContext.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Models\Team.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\Models\User.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\ViewModels\LoginViewModel.cs
-C:\Users\mititelu\Documents\Visual Studio 2015\Projects\FII.Centralizer\src\UniFIIcation\ViewModels\RegisterViewModel.cs
+--resource:"C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\obj\Debug\netcoreapp1.0\DungeonMasterdotnet-compile.deps.json",DungeonMaster.deps.json
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Program.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Startup.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Controllers\AuthController.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Controllers\HomeController.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Migrations\20170420103831_asdasf.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Migrations\20170420103831_asdasf.Designer.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Migrations\DungeonMasterContextModelSnapshot.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Models\Competition.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Models\DungeonMasterContext.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Models\Team.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\Models\User.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\ViewModels\LoginViewModel.cs
+C:\Users\mititelu\Documents\Visual Studio 2015\Projects\DungeonMaster\src\DungeonMaster\ViewModels\RegisterViewModel.cs
