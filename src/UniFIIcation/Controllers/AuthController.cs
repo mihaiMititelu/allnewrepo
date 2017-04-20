@@ -33,18 +33,13 @@ namespace DungeonMaster.Controllers
             if (ModelState.IsValid)
             {
                 var userName = vm.Username;
-#pragma warning disable CS1701 // Assuming assembly reference matches identity
                 var signInResult = await _signInManager.PasswordSignInAsync(userName, vm.Password, true, false);
-#pragma warning restore CS1701 // Assuming assembly reference matches identity
-
                 if (signInResult.Succeeded)
                     if (string.IsNullOrWhiteSpace(returnUrl))
                         return RedirectToAction("Index", "Home");
                     else
                         return Redirect(returnUrl);
-#pragma warning disable CS1701 // Assuming assembly reference matches identity
                 ModelState.AddModelError("", "Email or password wrong");
-#pragma warning restore CS1701 // Assuming assembly reference matches identity
             }
 
             return View();
@@ -56,9 +51,9 @@ namespace DungeonMaster.Controllers
             if (!ModelState.IsValid) return View();
             var user = new User
             {
+                UserName = vm.Username.Trim(),
                 Email = vm.Email.Trim(),
-                UserName = vm.Email.Substring(0, vm.Email.IndexOf('@')).Trim(),
-                Password = vm.Password.Trim(),
+                Password = vm.Password.Trim()
             };
               
             var result = await _userManager.CreateAsync(user, vm.Password);

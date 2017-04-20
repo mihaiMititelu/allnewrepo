@@ -1,4 +1,4 @@
-﻿@model UniFIIcation.ViewModels.RegisterViewModel
+﻿@model DungeonMaster.ViewModels.RegisterViewModel
 
 @{
     ViewBag.Title = "Register";
@@ -15,6 +15,13 @@
         <form method="post" novalidate>
             <div asp-validation-summary="ModelOnly"></div>
             <div class="form-group">
+                <label asp-for="Username">Username</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-muted"></span>
+            </div>
+            
+            
+            <div class="form-group">
                 <label asp-for="Email">Email</label>
                 <input asp-for="Email" class="form-control"/>
                 <span asp-validation-for="Email" class="text-muted"></span>
@@ -27,33 +34,9 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Password1">Verifica Parola</label>
-                <input asp-for="Password1" type="password" class="form-control"/>
-                <span asp-validation-for="Password1" class="text-muted"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Nume">Nume</label>
-                <input asp-for="Nume" class="form-control"/>
-                <span asp-validation-for="Nume" class="text-muted"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Prenume">Prenume</label>
-                <input asp-for="Prenume" class="form-control"/>
-                <span asp-validation-for="Prenume" class="text-muted"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="An">An</label>
-                <input asp-for="An" type="number" class="form-control"/>
-            </div>
-
-            <div class="form-group">
-                <label>Tip Cont</label><br/><br/>
-                Student: @Html.RadioButton("TipCont", 1)<br/>
-                Profesor: @Html.RadioButton("TipCont", 2)
-                <span asp-validation-for="TipCont"class="text-muted"></span>
+                <label asp-for="ConfirmPassword">Verifica Parola</label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control"/>
+                <span asp-validation-for="ConfirmPassword" class="text-muted"></span>
             </div>
 
             <div class="form-group">

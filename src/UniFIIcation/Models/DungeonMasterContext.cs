@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace DungeonMaster.Models
 {
     public class DungeonMasterContext : IdentityDbContext<User>

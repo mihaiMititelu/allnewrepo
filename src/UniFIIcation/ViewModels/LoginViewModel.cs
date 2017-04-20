@@ -4,10 +4,10 @@ namespace DungeonMaster.ViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Campul este obligatoriu")]
+        [Required(ErrorMessage = "Field is required!")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Campul este obligatoriu")]
+        [Required(ErrorMessage = "Field is required!")]
         public string Password { get; set; }
     }
 }

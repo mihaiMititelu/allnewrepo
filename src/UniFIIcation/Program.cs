@@ -15,6 +15,7 @@ namespace DungeonMaster
                 .Build();
 
             host.Run();
+
         }
     }
 }
