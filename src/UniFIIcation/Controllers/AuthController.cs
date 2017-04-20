@@ -39,7 +39,7 @@ namespace DungeonMaster.Controllers
                         return RedirectToAction("Index", "Home");
                     else
                         return Redirect(returnUrl);
-                ModelState.AddModelError("", "Email or password wrong");
+                ModelState.AddModelError("", "Email or password wrong!");
             }
 
             return View();

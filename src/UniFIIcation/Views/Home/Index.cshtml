@@ -1,22 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "Pagina Principală";
+    ViewData["Title"] = "Dungeon Master - Manage your tournaments";
 }
-<div>
-    @if (User.Identity.IsAuthenticated)
-    {
-        <span>
-            <a asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a>
-        </span>
-    }
-    else
-    {
-        <span>
-            <a asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
-        </span>
-        <span>
-            <a asp-area="" asp-controller="Auth" asp-action="Register">Register</a>
-        </span>
-    }
-
-
+<div class="jumbotron">
+    <h1>
+        this is the main page
+    </h1>
 </div>

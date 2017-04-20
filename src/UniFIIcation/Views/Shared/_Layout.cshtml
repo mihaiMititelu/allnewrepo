@@ -1,25 +1,78 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="~/css/freelancer.css"/>
-    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="~/lib/bootswatch/superhero/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body style="background-color: whitesmoke">
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a asp-action="Index" asp-controller="Home">
+                    <img src="~/images/applogo.png" width="208" height="50" />
+                </a>
+            </div>
 
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
+            <div class="container-fluid">
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group" style="padding-top:5px;">
+                        <input type="text" class="form-control" placeholder="Search events...">
+                    </div>
+                </form>
+                <div class="container navbar-form">
+                    <ul class="nav navbar-nav navbar-right" style="padding-top:5px;">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-area="" asp-controller="Auth" asp-action="Login">Login</a></li>
+                            <li><a asp-area="" asp-controller="Auth" asp-action="Register" class="btn-primary">Register</a></li>
+                        }
 
-</div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js">
-</script>
-@RenderSection("scripts", false)
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <hr />
+    
+    <footer>
+        <div class="container">
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-24 col-sm-8 col-md-7">
+                        <div>
+                            &copy; 2017 Dungeon Master
+                        </div>
+                    </div>
+                    <div class="col-xs-24 col-sm-5 col-md-4">
+                        <a href="http://facebook.com/6553A" target="_blank">Find me on Facebook</a>
+                        <br />
+                        <a href="https://plus.google.com/112305330834966228998" target="_blank">Check out my G+</a>
+                        <br />
+                        <a href="http://github.com/mihaiMititelu" target="_blank">Fork me on Github</a>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js">
+    </script>
+    @RenderSection("scripts", false)
 </body>
 
 </html>

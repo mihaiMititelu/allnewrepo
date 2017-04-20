@@ -8,24 +8,75 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 }
 
-<div class="row">
-    <div class="col-md-3">
-        <h3> Login </h3>
-        <form method="post" novalidate>
-            <div asp-validation-summary="ModelOnly"></div>
-            <div class="form-group">
-                <label asp-for="Username">Username</label>
-                <input asp-for="Username" class="form-control"/>
-                <span asp-validation-for="Username" class="text-muted"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password">Password</label>
-                <input asp-for="Password" type="password" class="form-control"/>
-                <span asp-validation-for="Password" class="text-muted"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-success"/>
-            </div>
-        </form>
+<div class="col-lg-10 col-lg-offset-1">
+    <h1>Log in</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-7 col-lg-offset-2">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div class="form-group">
+                    <input asp-for="Username" class="form-control" placeholder="Enter username or email" required=""/>
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Password" required=""/>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary form-control" />
+                </div>
+            </form>
+             <a asp-action="Register" asp-controller="Auth">Sign up</a>
+            <br />
+            <a asp-action="Index" asp-controller="Home">Forgot password?</a><!--TODO-->
+        </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="well well-lg">
+    <div class="row">
+        <div class="col-md-3">
+            <h1> Log in </h1>
+
+            <form method="post" novalidate>
+                <div asp-validation-summary="ModelOnly"></div>
+                <div class="form-group">
+                    <label asp-for="Username">Username</label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-muted"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-muted"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+
+
+
