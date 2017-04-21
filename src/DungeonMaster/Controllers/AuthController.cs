@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using DungeonMaster.Models;
 using DungeonMaster.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DungeonMaster.Controllers
 {
@@ -83,6 +84,12 @@ namespace DungeonMaster.Controllers
                 await _signInManager.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        public IActionResult Manage()
+        {
+            return View();
         }
     }
 }

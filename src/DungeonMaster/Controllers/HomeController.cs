@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DungeonMaster.Controllers
 {
@@ -9,8 +10,8 @@ namespace DungeonMaster.Controllers
             return View();
         }
 
-
-        public IActionResult Materii()
+        [Authorize]
+        public IActionResult Tournaments()
         {
             return View();
         }

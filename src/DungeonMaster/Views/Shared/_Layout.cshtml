@@ -4,49 +4,57 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-
     <link rel="stylesheet" href="~/lib/bootswatch/superhero/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
+@using Microsoft.AspNetCore.Identity
 <body>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a asp-action="Index" asp-controller="Home">
-                    <img src="~/images/applogo.png" width="208" height="50" />
-                </a>
+                <a asp-action="Index" class="navbar-brand" asp-controller="Home">Dungeon Master</a>
             </div>
 
             <div class="container-fluid">
                 <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group" style="padding-top:5px;">
+                    <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search events...">
                     </div>
                 </form>
-                <div class="container navbar-form">
-                    <ul class="nav navbar-nav navbar-right" style="padding-top:5px;">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li><a asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a></li>
-                        }
-                        else
-                        {
-                            <li><a asp-area="" asp-controller="Auth" asp-action="Login">Login</a></li>
-                            <li><a asp-area="" asp-controller="Auth" asp-action="Register" class="btn-primary">Register</a></li>
-                        }
 
-                    </ul>
-                </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+            <div class="nav navbar-nav navbar-left">
+                <a class="form-control btn-default" asp-action="New" asp-controller="Tournaments">Manage Tournaments</a>
             </div>
+            }
+
+            <div class="container navbar-form">
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Hello, " + User.Identity.Name + "!", "Manage", "Auth")</li>
+                        <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Auth" asp-action="Login">Login</a></li>
+                        <li><a asp-controller="Auth" asp-action="Register" class="btn-primary">Register</a></li>
+                    }
+
+                </ul>
+            </div>
+
+        </div>
         </div>
     </nav>
 
-    <div class="container body-content">
+    <div class="container body-content" style="padding-top:100px;">
         @RenderBody()
     </div>
 
     <hr />
-    
+
     <footer>
         <div class="container">
             <div class="panel-footer">
