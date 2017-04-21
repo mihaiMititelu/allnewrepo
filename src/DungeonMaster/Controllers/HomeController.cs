@@ -11,7 +11,7 @@ namespace DungeonMaster.Controllers
         }
 
         [Authorize]
-        public IActionResult Tournaments()
+        public IActionResult Competitions()
         {
             return View();
         }
